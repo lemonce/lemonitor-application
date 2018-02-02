@@ -1,16 +1,17 @@
 'use strict';
-const path = require('path');
 
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const EXCLUDE_PARTTERN = /(node_modules|bower_components)/;
 // Rewrite output path
 const DIST_PATH = path.resolve(__dirname, '../dist');
 
-exports.application = {
+module.exports = {
 	entry: {
 		app: [
 			'bootstrap/dist/css/bootstrap.min.css',
+			'font-awesome/css/font-awesome.min.css',
 			'bootstrap-slider/dist/css/bootstrap-slider.min.css',
 			path.resolve(__dirname, '../app')
 		]
@@ -77,7 +78,7 @@ exports.application = {
 		extensions: ['.js', '.vue'],
 		alias: {
 			'app': path.resolve(__dirname, '../app'),
-			'jquery': path.resolve(__dirname, './jquery-stub.js'),
+			jquery: path.resolve(__dirname, './jquery-stub.js'),
 			axios: 'axios/dist/axios.min.js',
 			moment: 'moment/min/moment.min.js',
 			vue: 'vue/dist/vue.runtime.esm.js',

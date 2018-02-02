@@ -1,0 +1,134 @@
+home: '主页'
+
+nav:
+ notification: '你没有未读通知'
+ config: '配置'
+ selectTime: '选择时间'
+ refresh: '刷新'
+
+illegalRange:
+  warning: '警告！'
+  tooltip: '您选择的时间范围不合法，请'
+  rechoose: '重选截止时间'
+
+config:
+  general: '通用'
+  flag: '标示'
+
+general:
+  languages: '多语言'
+
+flag:
+  update: '更新'
+  client: '客户端'
+  user: '用户'
+  userOfClient: '用户 —— 客户端'
+  selectClient: '选择客户端'
+  selectUser: '选择用户'
+  time: '时间'
+  clientCode: '客户端'
+  userCode: ' 用户'
+  ip: 'IP'
+  ua: 'UA'
+  domain: '域名'
+  name: '名称'
+  value: '值'
+
+flagClient:
+  expires: '有效期'
+  httpOnly: 'HTTP-only'
+
+flagUser:
+  cookieKey: 'Cookie键'
+  currentClient: '当前客户端'
+
+group:
+ overview: '概览'
+
+overview:
+ statistics: '统计'
+ about: '关于'
+ flag: '标示管理'
+
+statistics:
+  cpu: 'CPU使用率'
+  memory: '内存使用率'
+  systemTime: '系统时间'
+  session: '会话数'
+  
+about:
+  server:
+    software: '软件'
+    hardware: '硬件'
+
+  extensions:
+    installed: '已安装的扩展'
+
+label:
+  about: '关于'
+  version: '版本'
+  product: '项目'
+  license: '许可'
+  description: '描述'
+  name: '名称'
+  authors: '作者'
+  item: '项目'
+  value: '值'
+
+range:
+  date: '选择日期'
+  duration: '相对时间'
+  current: '选择现在'
+  apply: '应用'
+  quick: '快速选择'
+  selected: '已选择的时间'
+
+selectDate:
+  date: '日期'
+  time: '时间'
+
+duration:
+  time: '时间'
+  min: '分钟'
+  hour: '小时'
+  day: '天'
+  days: '天'
+
+current:
+  time: '当前时间'
+  tipOne: '选择现在意味着'
+  tipTwo: '是'
+
+preset:
+  day:
+    one: '1天前'
+    two: '2天前'
+    three: '3天前'
+    five: '5天前'
+    seven: '7天前'
+    fourteen: '14天前'
+    thirty: '30天前'
+
+  now: '现在'
+  minute:
+    ten: '10分钟前'
+    thirty: '30分钟前'
+
+  hour:
+    one: '1小时前'
+    three: '3小时前'
+    twelve: '12小时前'
+
+  week:
+    one: '1周前'
+    two: '2周前'
+
+  month:
+    one: '1月前'
+    three: '3月前'
+    six: '6月前'
+
+  year:
+    one: '1年前'
+
+  

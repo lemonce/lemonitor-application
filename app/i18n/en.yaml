@@ -1,0 +1,132 @@
+home: 'Home'
+
+nav:
+  notification: 'You have no unread notification'
+  config: 'Config'
+  selectTime: 'Select time'
+  refresh: 'Refresh'
+
+illegalRange:
+  warning: 'Warning!'
+  tooltip: 'The time range you chose is not legal, please'
+  rechoose: 'rechoose time to'
+
+config:
+  general: 'General'
+  flag: 'Flag'
+
+general:
+  languages: 'Languages'
+
+flag:
+  update: 'Update'
+  client: 'Client'
+  user: 'User'
+  userOfClient: 'User of client'
+  selectClient: 'Select Client'
+  selectUser: 'Select User'
+  time: 'Time'
+  clientCode: ' Client Code'
+  userCode: ' User Code'
+  ip: 'IP'
+  ua: 'UA'
+  domain: 'Domain'
+  name: 'Name'
+  value: 'Value'
+
+flagClient:
+  expires: 'Expires'
+  httpOnly: 'HTTP-only'
+
+flagUser:
+  cookieKey: 'Cookie Key'
+  currentClient: 'Current Client'
+
+group:
+  overview: 'Overview'
+  
+overview:
+  statistics: 'Statistics'
+  about: 'About'
+  flag: 'Flag Management'
+
+statistics:
+  cpu: 'Cpu Usage'
+  memory: 'Memory Usage'
+  systemTime: 'System Timing'
+  session: 'Session'
+
+about:
+  server:
+    software: 'Server Software'
+    hardware: 'Server Hardware'
+
+  extensions:
+    installed: 'Extensions Installed'
+
+label:
+  about: 'About'
+  version: 'Version'
+  product: 'Product'
+  license: 'License'
+  description: 'Description'
+  name: 'Name'
+  authors: 'Authors'
+  item: 'Item'
+  value: 'Value'
+  
+range:
+  date: 'Select Date'
+  duration: 'Relative Time'
+  current: 'Choose Now'
+  apply: 'Apply'
+  quick: 'Quick Select'
+  selected: 'Selected Datetime'
+
+selectDate:
+  date: 'Date'
+  time: 'Time'
+
+duration:
+  time: 'Time'
+  min: 'Min'
+  hour: 'Hour'
+  day: 'Day'
+  days: 'Days'
+
+current:
+  time: 'Current Time'
+  tipOne: 'Choose now means that the'
+  tipTwo: 'is'
+
+preset:
+  day:
+    one: '1 day ago'
+    two: '2 days ago'
+    three: '3 days ago'
+    five: '5 days ago'
+    seven: '7 days ago'
+    fourteen: '14 days ago'
+    thirty: '30 days ago'
+
+  now: 'now'
+  minute:
+    ten: '10 minutes ago'
+    thirty: '30 minute ago'
+
+  hour:
+    one: '1 hour ago'
+    three: '3 hours ago'
+    twelve: '12 hours ago'
+
+  week:
+    one: '1 week ago'
+    two: '2 weeks ago'
+
+  month:
+    one: '1 months ago'
+    three: '3 months ago'
+    six: '6 months ago'
+
+  year:
+    one: '1 year ago' 

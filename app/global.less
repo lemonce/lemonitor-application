@@ -1,0 +1,68 @@
+body {
+	font-family: "Microsoft Yahei", Helvetica, sans-serif, Arial, sans-serif, monospace;
+}
+
+@white: #fff;
+@metric-panel-bgcolor: #fdfdfd;
+@gray-1: #ddd;
+@gray-2: #eee;
+@gray-3: #9d9d9d;
+@dark-1: rgba(255, 255, 255, .1);
+@dark-2: rgba(255, 255, 255, .2);
+@dark-3: #999;
+@dark-4: #666;
+@dark-5: #444;
+@black: #000;
+@blue: #00c1de;
+
+@menu-bg: #333744;
+@group-bg: #42485B;
+@group-border: #5E626F;
+
+@load-icon: 300px;
+@menu-width: 226px;
+
+@logo-vertical: 15px;
+@logo-horizontal: 20px;
+@base: 10px;
+
+.border (@width: 1px, @style: solid, @color: @dark-5) {
+	border: @arguments;
+}
+.default-group-arrow (@width: 4px, @style: solid, @color: transparent) {
+	border-top: @arguments;
+	border-bottom: @arguments;
+	border-left: @width @style;
+}
+.expanded-group-arrow (@width: 4px, @style: solid, @color: transparent) {
+	border-top: @width @style;
+	border-left: @arguments;
+	border-right: @arguments;
+}
+.select-item-arrow (@width: 6px, @style: solid, @color: transparent) {
+	border-top: @arguments;
+	border-bottom: @arguments;
+	border-right: @width @style @white;
+}
+
+.load-icon {
+	width: @load-icon;
+	position: fixed;
+	left: 50%;
+	top: @load-icon;
+	margin-left: -@load-icon / 2;
+	opacity: .5;
+	animation: loading 3s linear infinite;
+}
+
+@keyframes loading {
+	25% {
+		opacity: .95;
+	}
+	50% {
+		opacity: 1;
+	}
+	75% {
+		opacity: .95;
+	}
+}
