@@ -1,0 +1,124 @@
+{
+	"duration": {
+		"day.one": 1,
+		"day.two": 2,
+		"day.five": 5,
+		"day.seven": 7,
+		"day.fourteen": 14,
+		"day.thirty": 30
+	},
+	"time": {
+		"to": [
+			{
+				"label":"now",
+				"offset": 0
+			},
+			{
+				"label":"minute.ten",
+				"offset": 600
+			},
+			{
+				"label": "minute.thirty",
+				"offset": 1800
+			},
+			{
+				"label": "hour.one",
+				"offset": 3600
+			},
+			{
+				"label": "hour.three",
+				"offset": 10800
+			},
+			{
+				"label": "hour.twelve",
+				"offset": 43200
+			},
+			{
+				"label": "day.one",
+				"offset": 86400
+			},
+			{
+				"label": "day.three",
+				"offset": 259200
+			},
+			{
+				"label": "week.one",
+				"offset": 604800
+			},
+			{
+				"label": "week.two",
+				"offset": 1209600
+			},
+			{
+				"label": "month.one",
+				"offset": 2592000
+			},
+			{
+				"label": "month.three",
+				"offset": 7776000
+			},
+			{
+				"label": "month.six",
+				"offset": 15552000
+			},
+			{
+				"label": "year.one",
+				"offset": 31536000
+			}
+		],
+		"from": [
+			{
+				"label":"minute.ten",
+				"offset": 600
+			},
+			{
+				"label": "minute.thirty",
+				"offset": 1800
+			},
+			{
+				"label": "hour.one",
+				"offset": 3600
+			},
+			{
+				"label": "hour.three",
+				"offset": 10800
+			},
+			{
+				"label": "hour.twelve",
+				"offset": 43200
+			},
+			{
+				"label": "day.one",
+				"offset": 86400
+			},
+			{
+				"label": "day.three",
+				"offset": 259200
+			},
+			{
+				"label": "week.one",
+				"offset": 604800
+			},
+			{
+				"label": "week.two",
+				"offset": 1209600
+			},
+			{
+				"label": "month.one",
+				"offset": 2592000
+			},
+			{
+				"label": "month.three",
+				"offset": 7776000
+			},
+			{
+				"label": "month.six",
+				"offset": 15552000
+			},
+			{
+				"label": "year.one",
+				"offset": 31536000
+			}
+		]
+	}
+}

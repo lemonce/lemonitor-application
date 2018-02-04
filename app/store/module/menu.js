@@ -26,7 +26,7 @@ export default {
 			GroupFactory('group.overview', [
 				ItemFactory('overview.statistics', '/statistics'),
 				ItemFactory('overview.about', '/about'),
-				ItemFactory('overview.flag', '/flag')
+				ItemFactory('overview.flag', '/flag/client')
 			])
 		]
 	},

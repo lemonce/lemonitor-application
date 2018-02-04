@@ -45,6 +45,15 @@ body {
 	border-right: @width @style @white;
 }
 
+.timepicker (@width: 6px, @style: solid, @color: transparent) {
+	border-bottom: @width @style @white;
+	border-left: @arguments;
+	border-right: @arguments; 
+}
+
+.dropdown-toggle::after {
+	display: none;
+}
 .load-icon {
 	width: @load-icon;
 	position: fixed;
@@ -65,4 +74,19 @@ body {
 	75% {
 		opacity: .95;
 	}
+}
+
+@keyframes illegal {
+	from {
+		color: @gray-1;
+		opacity: .5;
+	}
+	to {
+		color: @white;
+		opacity: 1;
+	}
+}
+
+.nav-tabs.datepicker-model {
+	margin-bottom: @base;
 }

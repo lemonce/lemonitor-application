@@ -1,6 +1,7 @@
 'use strict';
 
 import './global.less';
+import './component/global/index';
 
 import axios from 'axios';
 import Vue from 'vue';
@@ -15,7 +16,7 @@ Vue.use(VueRouter);
 Vue.use(bFormSlider);
 Vue.use(VueTimepicker, { name: 'timepicker' });
 
-import App from './component/app.vue';
+import App from './component/App.vue';
 
 import routes from './routes';
 import store from './store/index.js';

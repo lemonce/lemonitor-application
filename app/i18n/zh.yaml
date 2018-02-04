@@ -13,7 +13,7 @@ illegalRange:
 
 config:
   general: '通用'
-  flag: '标示'
+  flag: '标识'
 
 general:
   languages: '多语言'
@@ -48,7 +48,7 @@ group:
 overview:
  statistics: '统计'
  about: '关于'
- flag: '标示管理'
+ flag: '标识管理'
 
 statistics:
   cpu: 'CPU使用率'
