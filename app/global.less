@@ -1,21 +1,25 @@
+html {
+	font-size: 14px;
+}
 body {
 	font-family: "Microsoft Yahei", Helvetica, sans-serif, Arial, sans-serif, monospace;
 }
 
-@white: #fff;
-@metric-panel-bgcolor: #fdfdfd;
-@gray-1: #ddd;
-@gray-2: #eee;
-@gray-3: #9d9d9d;
+@white: #FFF;
+@gray-1: #EEE;
+@gray-2: #DDD;
+@gray-3: #CCC;
 @dark-1: rgba(255, 255, 255, .1);
 @dark-2: rgba(255, 255, 255, .2);
-@dark-3: #999;
-@dark-4: #666;
-@dark-5: #444;
+@dark-3: rgba(255, 255, 255, .3);
+@dark-4: rgba(255, 255, 255, .4);
+@dark-5: rgba(255, 255, 255, .5);
 @black: #000;
-@blue: #00c1de;
+
+@metric-panel-bgcolor: #fdfdfd;
 
 @menu-bg: #333744;
+@group-active: #00C1DE;
 @group-bg: #42485B;
 @group-border: #5E626F;
 
@@ -50,6 +54,11 @@ body {
 	border-left: @arguments;
 	border-right: @arguments; 
 }
+.time-picker {
+	input.display-time {
+		cursor: pointer;
+	}
+}
 
 .dropdown-toggle::after {
 	display: none;
@@ -78,15 +87,11 @@ body {
 
 @keyframes illegal {
 	from {
-		color: @gray-1;
+		color: @gray-2;
 		opacity: .5;
 	}
 	to {
 		color: @white;
 		opacity: 1;
 	}
-}
-
-.nav-tabs.datepicker-model {
-	margin-bottom: @base;
 }

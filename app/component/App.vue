@@ -13,24 +13,8 @@
 
 		<div class="navbar-collapse"
 			:class="{'collapse': isNavHide}">
-			<ul class="navbar-nav mr-auto" id="toolbar">
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/notification"
-					:title="$t('nav.notification')">
-					<a class="nav-link"><i class="fa fa-bell"></i></a>
-				</router-link>
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/config"
-					:title="$t('nav.config')">
-					<a class="nav-link"><i class="fa fa-cog"></i></a>
-				</router-link>
-			</ul>
 
-			<ul class="navbar-nav"
+			<ul class="navbar-nav ml-auto"
 				id="time-range-picker">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle text-right"
@@ -39,8 +23,7 @@
 						:class="isDuration ? 'fa-minus' : 'fa-chevron-left'"
 						style="margin-right: 0.5em"></i>{{formatedFrom}}</a>
 					<time-from v-if="isTimeFromShow"
-						@apply="isTimeFromShow = false"
-						class="dropdown-menu dropdown-picker"></time-from>
+						@apply="isTimeFromShow = false"></time-from>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"
@@ -50,13 +33,27 @@
 							:class="datepickerToSpanClass"
 							style="margin-left: 0.5em"></i></a>
 					<time-to v-if="isTimeToShow"
-						@apply="isTimeToShow = false"
-						class="dropdown-menu dropdown-picker"></time-to>
+						@apply="isTimeToShow = false"></time-to>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link"><i class="fa fa-refresh"
 						:title="$t('nav.refresh')"></i></a>
 				</li>
+				<router-link
+					tag="li"
+					class="nav-item"
+					to="/notification"
+					:title="$t('nav.notification')"
+					style="border-right: 0;">
+					<a class="nav-link"><i class="fa fa-bell"></i></a>
+				</router-link>
+				<router-link
+					tag="li"
+					class="nav-item"
+					to="/config"
+					:title="$t('nav.config')">
+					<a class="nav-link"><i class="fa fa-cog"></i></a>
+				</router-link>
 			</ul>
 		</div>
 	</nav>
@@ -140,15 +137,17 @@ export default {
 #global-nav {
 	user-select: none;
 
-	// #toolbar li {
-	// 	border-left: 1px solid @dark-5;
-	// }
+	#toolbar li {
+		// border-left: 1px solid @dark-5;
+		// border-right: 1px solid @dark-5;
+		// padding: 0 .23rem;
+	}
 }
 
 #workbench {
 	position: absolute;
 	width: 100%;
-	top: 56px;
+	top: 3.5rem;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -192,20 +191,51 @@ export default {
 	}
 
 	.dropdown-picker {
-		display: block;
-		box-shadow: none;
-		padding: 5px 10px 15px;
-		width: 540px;
-		top: 45px;
-		left: -335px;
-		.nav-link {
-			color: #212529;
+		width: 38rem;
+		padding: 0;
+		top: 2.875rem;
+		left: -28rem;
 
-			&.active,
-			&:hover {
-				color: #007BFF;
+		&::before {
+			content: '';
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: -6px;
+			right: 68px;
+			.timepicker();
+		}
+
+		div.dropdown-item {
+			&:active,
+			&:focus {
+				color: #212529;
+				background-color: rgba(0, 0, 0, .03);
+			}
+			&:focus {
+				outline: none;
 			}
 		}
+
+		div.card-body {
+			li.text-primary {
+				cursor: pointer;
+			}
+		}
+		.nav-link {
+			color: #007BFF;
+
+			&.active {
+				color: #495057;
+			}
+		}
+		// .nav-link:not(.active) {
+			
+		// 	&:hover {
+		// 		border-color: @white @white @white;
+		// 		background: #e9ecef;
+		// 	}
+		// }
 		i.fa {
 			margin-right: 0.5em;
 		}

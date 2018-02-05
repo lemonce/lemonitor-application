@@ -4,11 +4,11 @@
 		:key="index"
 		:class="{expanded: group.expanded}"
 		class="menu-group">
-		<h5 @click="toggleGroup(group)"
+		<h6 @click="toggleGroup(group)"
 			:title="$t(group.name)"
 			class="menu-group-name">
 			{{$t(group.name)}}
-		</h5>
+		</h6>
 		<ul v-for="(item, index) in group.itemList"
 			:key="index"
 			v-show="group.expanded"
@@ -62,7 +62,7 @@ export default {
 			line-height: 14px;
 			position: relative;
 			&:hover {
-				background: @blue;
+				background: @group-active;
 			}
 			&::before {
 				content: "";

@@ -1,44 +1,47 @@
 <template>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-9">
-			<div class="form-group">
-				<label>{{$t('duration.time')}}</label>
-				<b-form-slider style="margin: auto 12px;"
-					v-model="options.time"
-					:tooltip="'hide'"
-					:ticks="[MIN, HOUR, DAY - MIN]"
-					:ticks-positions="[0, 40, 100]"
-					:ticks-labels="[$t('duration.min'), $t('duration.hour'), $t('duration.day')]"
-					:step="step"></b-form-slider>
-			</div>
-		</div>
-
-		<div class="col-3">
-			<div class="form-group">
-				<label for="time-duration-day">{{$t('duration.days')}}</label>
-				<input type="text"
-					v-model.number="options.days"
-					class="form-control"
-					id="time-duration-day">
-			</div>
+<div>
+	<div class="col-9">
+		<div class="form-group">
+			<label>{{$t('duration.time')}}</label>
+			<b-form-slider
+				v-model="options.time"
+				:tooltip="'hide'"
+				:ticks="[MIN, HOUR, DAY - MIN]"
+				:ticks-positions="[0, 40, 100]"
+				:ticks-labels="[$t('duration.min'), $t('duration.hour'), $t('duration.day')]"
+				:step="step"></b-form-slider>
 		</div>
 	</div>
 
-	<h4>{{$t('range.quick')}}</h4>
-	<ul class="list-group list-unstyled row">
-		<li class="col-md-4"
-			v-for="(day, label) in preset.duration"
-			:key="label"
-			@click="sync(day)"><a>{{$t(`preset.${label}`)}}</a></li>
-	</ul>
+	<div class="col-3">
+		<div class="form-group">
+			<label for="time-duration-day">{{$t('duration.days')}}</label>
+			<input type="text"
+				v-model.number="options.days"
+				class="form-control"
+				id="time-duration-day">
+		</div>
+	</div>
+	<div class="col-12">
+		<h4>{{$t('range.quick')}}</h4>
+		<ul class="list-group list-unstyled row">
+			<li class="col-4 text-primary"
+				v-for="(day, label) in preset.duration"
+				:key="label"
+				@click="sync(day)">{{$t(`preset.${label}`)}}</li>
+		</ul>
 
-	<div class="alert alert-info">
-		<strong>{{$t('range.selected')}} :</strong> {{selectedDay}} {{$t('duration.day')}}
-		{{selectedHour}} {{$t('duration.hour')}} {{selectedMin}} {{$t('duration.min')}}
 	</div>
 
+	<div class="col-12">
+		<div class="alert alert-info">
+			<strong>{{$t('range.selected')}} :</strong> {{selectedDay}} {{$t('duration.day')}}
+			{{selectedHour}} {{$t('duration.hour')}} {{selectedMin}} {{$t('duration.min')}}
+		</div>
+
+	</div>
 </div>
+
 </template>
 
 <script>
@@ -121,3 +124,13 @@ export default {
 	mixins:[mixin]
 }
 </script>
+
+<style lang="less">
+.d-inline-block {
+	margin: auto 1rem;
+
+	.slider-horizontal {
+		width: 24rem;
+	}
+}
+</style>

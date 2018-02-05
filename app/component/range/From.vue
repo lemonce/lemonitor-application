@@ -1,23 +1,28 @@
 <template>
-<div id="range-from-picker">
-	<ul class="nav nav-tabs datepicker-model">
-		<li class="nav-item">
-			<a @click.stop="options.type = 'moment'"
-				:class="{'active': options.type === 'moment'}"
-				class="nav-link"><i class="fa fa-chevron-left"></i>{{$t('range.date')}}</a>
-		</li>
-		<li class="nav-item">
-			<a @click.stop="options.type = 'duration'"
-				:class="{'active': options.type === 'duration'}"
-				class="nav-link"><i class="fa fa-minus"></i>{{$t('range.duration')}}</a>
-		</li>
-	</ul>
-
-	<component v-model="options.value"
+<div id="range-from-picker"
+	class="dropdown-menu dropdown-picker card">
+	<div class="card-header">
+		<ul class="nav nav-tabs card-header-tabs">
+			<li class="nav-item">
+				<a @click.stop="options.type = 'moment'"
+					:class="{'active': options.type === 'moment'}"
+					class="nav-link"><i class="fa fa-chevron-left"></i>{{$t('range.date')}}</a>
+			</li>
+			<li class="nav-item">
+				<a @click.stop="options.type = 'duration'"
+					:class="{'active': options.type === 'duration'}"
+					class="nav-link"><i class="fa fa-minus"></i>{{$t('range.duration')}}</a>
+			</li>
+		</ul>
+	</div>
+	<component class="card-body row"
+		v-model="options.value"
 		:is="model[this.options.type]"></component>
 
-	<hr>
-	<button class="btn btn-primary pull-right" @click="apply()">{{$t('range.apply')}}</button>
+	<div class="card-footer">
+		<button class="btn btn-primary pull-right" @click="apply()">{{$t('range.apply')}}</button>
+	</div>
+
 </div>
 </template>
 
@@ -54,23 +59,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="less">
-@import "~app/global.less";
-
-#range-from-picker {
-	&::before {
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: -5px;
-		right: 68px;
-		.timepicker();
-	}
-
-	.slider-horizontal {
-		width: 348px;
-	}
-}
-</style>

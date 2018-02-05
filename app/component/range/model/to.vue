@@ -1,40 +1,42 @@
 <template>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-8">
-			<div class="form-group">
-				<label>{{$t('selectDate.date')}}</label>
-				<datepicker
-					v-model="options.date"
-					:inline="true"
-					:day-view-only="true"
-					:disabled="disabled"
-					:language="$i18n.locale"
-				></datepicker>
-			</div>
-		</div>
-
-		<div class="col-4">
-			<div class="form-group">
-				<label for="timepicker-to">{{$t('selectDate.time')}}</label>
-				<timepicker v-model="options.time"
-					id="timepicker-to"
-					hide-clear-button></timepicker>
-			</div>
-
-			<h4>{{$t('range.quick')}}</h4>
-			<ul class="list-group list-unstyled">
-				<li v-for="(presetTo, index) in avalibleTo(preset.time.to)"
-					:key="index"
-					@click="setTime(presetTo.offset)"><a>{{$t(`preset.${presetTo.label}`)}}</a></li>
-			</ul>
+<div>
+	<div class="col-8">
+		<div class="form-group">
+			<label>{{$t('selectDate.date')}}</label>
+			<datepicker
+				v-model="options.date"
+				:inline="true"
+				:day-view-only="true"
+				:disabled="disabled"
+				:language="$i18n.locale"
+			></datepicker>
 		</div>
 	</div>
 
-	<div class="alert alert-info">
-		<strong>{{$t('range.selected')}} :</strong>&nbsp;{{selectedDate}}&nbsp;{{selectedTime}}
+	<div class="col-4">
+		<div class="form-group">
+			<label for="timepicker-to">{{$t('selectDate.time')}}</label>
+			<timepicker v-model="options.time"
+				id="timepicker-to"
+				hide-clear-button></timepicker>
+		</div>
+
+		<h4>{{$t('range.quick')}}</h4>
+		<ul class="list-group list-unstyled">
+			<li v-for="(presetTo, index) in avalibleTo(preset.time.to)"
+				:key="index"
+				@click="setTime(presetTo.offset)"
+				class="text-primary">{{$t(`preset.${presetTo.label}`)}}</li>
+		</ul>
+	</div>
+	<div class="col-12">
+		<div class="alert alert-info">
+			<strong>{{$t('range.selected')}} :</strong>&nbsp;{{selectedDate}}&nbsp;{{selectedTime}}
+		</div>
+
 	</div>
 </div>
+
 </template>
 
 <script>

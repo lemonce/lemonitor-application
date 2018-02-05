@@ -1,23 +1,28 @@
 <template>
-<div id="range-to-picker">
-	<ul class="nav nav-tabs datepicker-model">
-		<li class="nav-item">
-			<a @click.stop="options.type = 'moment'"
-				:class="{'active': options.type === 'moment'}"
-				class="nav-link"><i class="fa fa-chevron-right"></i>{{$t('range.date')}}</a>
-		</li>
-		<li class="nav-item">
-			<a @click.stop="options.type = 'now'"
-				:class="{'active': options.type === 'now'}"
-				class="nav-link"><i class="fa fa-step-forward"></i>{{$t('range.current')}}</a>
-		</li>
-	</ul>
+<div id="range-to-picker"
+	class="dropdown-menu dropdown-picker card">
+	<div class="dropdown-item card-header">
+		<ul class="nav nav-tabs card-header-tabs">
+			<li class="nav-item">
+				<a @click.stop="options.type = 'moment'"
+					:class="{'active': options.type === 'moment'}"
+					class="nav-link"><i class="fa fa-chevron-right"></i>{{$t('range.date')}}</a>
+			</li>
+			<li class="nav-item">
+				<a @click.stop="options.type = 'now'"
+					:class="{'active': options.type === 'now'}"
+					class="nav-link"><i class="fa fa-step-forward"></i>{{$t('range.current')}}</a>
+			</li>
+		</ul>
 
-	<component v-model="options.value"
+	</div>
+	<component class="card-body row"
+		v-model="options.value"
 		:is="model[this.options.type]"></component>
 
-	<hr>
-	<button @click="apply()" class="btn btn-primary pull-right">{{$t('range.apply')}}</button>
+	<div class="card-footer">
+		<button @click="apply()" class="btn btn-primary pull-right">{{$t('range.apply')}}</button>
+	</div>
 </div>
 </template>
 
@@ -54,19 +59,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="less">
-@import "~app/global.less";
-
-#range-to-picker {
-	&::before {
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: -5px;
-		right: 77px;
-		.timepicker();
-	}
-}
-</style>

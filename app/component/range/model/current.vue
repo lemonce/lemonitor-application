@@ -1,14 +1,20 @@
 <template>
-<div class="card text-center">
-	<div class="card-body">
-		<h5 class="card-title">{{$t('current.time')}}</h5>
-		<h3 id="current-date"></h3>
-		<p id="current-time" class="card-text"></p>
+<div class="text-center">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">{{$t('current.time')}}</h5>
+				<h3 id="current-date"></h3>
+				<p id="current-time" class="card-text"></p>
+			</div>
+		</div>
 	</div>
 
-	<div class="card-footer text-muted">
-		<p class="card-text">{{$t('current.tipOne')}} <strong>{{$t('range.selected')}}</strong>
-			{{$t('current.tipTwo')}} <strong>{{$t('current.time')}}</strong> .</p>
+	<div class="col-12">
+		<div class="text-info mt-3">
+			<p class="card-text">{{$t('current.tipOne')}} <strong>{{$t('range.selected')}}</strong>
+				{{$t('current.tipTwo')}} <strong>{{$t('current.time')}}</strong> .</p>
+		</div>
 
 	</div>
 </div>
