@@ -3,7 +3,7 @@
 	<div class="col-9">
 		<div class="form-group">
 			<label>{{$t('duration.time')}}</label>
-			<b-form-slider
+			<b-form-slider class="mx-3 my-auto"
 				v-model="options.time"
 				:tooltip="'hide'"
 				:ticks="[MIN, HOUR, DAY - MIN]"
@@ -34,7 +34,7 @@
 	</div>
 
 	<div class="col-12">
-		<div class="alert alert-info">
+		<div class="alert alert-info mt-3 mb-0">
 			<strong>{{$t('range.selected')}} :</strong> {{selectedDay}} {{$t('duration.day')}}
 			{{selectedHour}} {{$t('duration.hour')}} {{selectedMin}} {{$t('duration.min')}}
 		</div>
@@ -46,7 +46,7 @@
 
 <script>
 import preset from './preset.json';
-import {MIN, HOUR, DAY, mixin} from './mixin';
+import {MIN, HOUR, DAY, mixin} from './time-control';
 
 export default {
 	name: 'range-from-duration',
@@ -81,7 +81,7 @@ export default {
 			};
 		},
 		sync(value){
-			this.options.days=value;
+			this.options.days = value;
 
 		},
 	},
@@ -127,7 +127,6 @@ export default {
 
 <style lang="less">
 .d-inline-block {
-	margin: auto 1rem;
 
 	.slider-horizontal {
 		width: 24rem;

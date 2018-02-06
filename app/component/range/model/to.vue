@@ -30,7 +30,7 @@
 		</ul>
 	</div>
 	<div class="col-12">
-		<div class="alert alert-info">
+		<div class="alert alert-info mt-3 mb-0">
 			<strong>{{$t('range.selected')}} :</strong>&nbsp;{{selectedDate}}&nbsp;{{selectedTime}}
 		</div>
 
@@ -47,7 +47,7 @@ import {
 	mixin,
 	computeTimeModelFromTimestamp,
 	computeDate
-} from './mixin';
+} from './time-control';
 
 export default {
 	name: 'range-to-to',

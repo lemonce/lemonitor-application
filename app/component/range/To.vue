@@ -1,17 +1,19 @@
 <template>
 <div id="range-to-picker"
-	class="dropdown-menu dropdown-picker card">
+	class="dropdown-menu dropdown-picker-card card p-0">
 	<div class="dropdown-item card-header">
 		<ul class="nav nav-tabs card-header-tabs">
 			<li class="nav-item">
 				<a @click.stop="options.type = 'moment'"
 					:class="{'active': options.type === 'moment'}"
-					class="nav-link"><i class="fa fa-chevron-right"></i>{{$t('range.date')}}</a>
+					class="nav-link"><i class="fa fa-chevron-right mr-2"
+					></i>{{$t('range.date')}}</a>
 			</li>
 			<li class="nav-item">
 				<a @click.stop="options.type = 'now'"
 					:class="{'active': options.type === 'now'}"
-					class="nav-link"><i class="fa fa-step-forward"></i>{{$t('range.current')}}</a>
+					class="nav-link"><i class="fa fa-step-forward mr-2"
+					></i>{{$t('range.current')}}</a>
 			</li>
 		</ul>
 

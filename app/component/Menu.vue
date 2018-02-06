@@ -2,22 +2,21 @@
 <div>
 	<div v-for="(group, index) in menu"
 		:key="index"
-		:class="{expanded: group.expanded}"
-		class="menu-group">
+		:class="{expanded: group.expanded}">
 		<h6 @click="toggleGroup(group)"
 			:title="$t(group.name)"
-			class="menu-group-name">
+			class="menu-group m-0 border-left-0 border-right-0">
 			{{$t(group.name)}}
 		</h6>
 		<ul v-for="(item, index) in group.itemList"
 			:key="index"
 			v-show="group.expanded"
-			class="menu-item">
+			class="menu-group-item-list mb-0 pl-0">
 			<router-link
 				tag="li"
 				:to="item.path"
 				:title="$t(item.label)">
-				<a class="menu-item-name">{{$t(item.label)}}</a>
+				<a class="menu-group-item">{{$t(item.label)}}</a>
 			</router-link>
 		</ul>
 	</div>
@@ -49,72 +48,70 @@ export default {
 
 #menu {
 	.menu-group {
-		.menu-group-name {
-			.border(1px, solid, @group-border);
-			background: @group-bg;
-			border-left: 0;
-			border-right: 0;
-			padding: @base;
-			margin: 0;
-			color: @white;
-			white-space: nowrap;
-			text-indent: 1em;
-			line-height: 14px;
-			position: relative;
-			&:hover {
-				background: @group-active;
-			}
-			&::before {
-				content: "";
-				width: 0;
-				height: 0;
-				position: absolute;
-				top: 13px;
-				left: 12px;
-				.default-group-arrow();
-			}
+		.group();
+		background: @group-bg;
+		padding: @base;
+		color: @white;
+		white-space: nowrap;
+		text-indent: 1rem;
+		line-height: 1rem;
+		position: relative;
+		&:hover {
+			background: @group-active;
 		}
-
-		&.expanded .menu-group-name::before {
-			top: 15px;
-			left: 10px;
-			.expanded-group-arrow();
+		&::before {
+			content: "";
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 13px;
+			left: 12px;
+			.arrow-group-default();
 		}
-
-		.menu-item {
-			list-style: none;
-			padding-left: 0;
-			margin-bottom: 0;
-			.menu-item-name {
-				position: relative;
-				padding: 10px 35px;
-				font-size: 12px;
-				white-space: nowrap;
-				text-decoration: none;
-				color: @white;
-				display: block;
-				&:hover {
-					background: @dark-1;
-				}
-			}
-			.router-link-exact-active {
-				.menu-item-name {
-					font-weight: bold;
-					background: @dark-2;
-					&::after {
-						content: '';
-						width: 0;
-						height: 0;
-						position: absolute;
-						right: 0;
-						top: 50%;
-						margin-top: -6px;
-						.select-item-arrow();
-					}
-				}
-			}
-		}
-
 	}
+
+	&.expanded .menu-group::before {
+		top: 15px;
+		left: 10px;
+		.arrow-group-expand();
+	}
+
+	.menu-group-item-list {
+		list-style: none;
+		
+		.menu-group-item {
+			position: relative;
+			padding: 10px 35px;
+			font-size: 12px;
+			white-space: nowrap;
+			text-decoration: none;
+			color: @white;
+			display: block;
+
+			&:hover {
+				background: @dark-1;
+			}
+		}
+		
+		.router-link-exact-active {
+			.menu-group-item {
+				font-weight: bold;
+				background: @dark-2;
+				
+				&::after {
+					content: '';
+					width: 0;
+					height: 0;
+					position: absolute;
+					right: 0;
+					top: 50%;
+					margin-top: -6px;
+					.arrow-group-item-select();
+				}
+
+			}
+		}
+	}
+
 }
 </style>

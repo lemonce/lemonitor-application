@@ -1,6 +1,6 @@
 <template>
 <div>
-	<nav class="navbar navbar-dark bg-dark navbar-expand"
+	<nav class="navbar navbar-dark bg-dark navbar-expand-md"
 		id="global-nav">
 		<a href="#" class="navbar-brand">
 			<logo></logo>
@@ -17,11 +17,10 @@
 			<ul class="navbar-nav ml-auto"
 				id="time-range-picker">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle text-right"
-						@click="openTimeFrom()"
-					><i class="fa"
-						:class="isDuration ? 'fa-minus' : 'fa-chevron-left'"
-						style="margin-right: 0.5em"></i>{{formatedFrom}}</a>
+					<a class="nav-link dropdown-toggle"
+						@click="openTimeFrom()"><i
+							class="fa mr-2"
+							:class="timeFromModelIcon"></i>{{formatedFrom}}</a>
 					<time-from v-if="isTimeFromShow"
 						@apply="isTimeFromShow = false"></time-from>
 				</li>
@@ -29,22 +28,21 @@
 					<a class="nav-link dropdown-toggle"
 						:class="{'illegal-to': isIllegal}"
 						@click="openTimeTo()">{{formatedTo}}<i
-							class="fa"
-							:class="datepickerToSpanClass"
-							style="margin-left: 0.5em"></i></a>
+							class="fa ml-2"
+							:class="timeToModelIcon"></i></a>
 					<time-to v-if="isTimeToShow"
 						@apply="isTimeToShow = false"></time-to>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link"><i class="fa fa-refresh"
 						:title="$t('nav.refresh')"></i></a>
+
 				</li>
 				<router-link
 					tag="li"
 					class="nav-item"
 					to="/notification"
-					:title="$t('nav.notification')"
-					style="border-right: 0;">
+					:title="$t('nav.notification')">
 					<a class="nav-link"><i class="fa fa-bell"></i></a>
 				</router-link>
 				<router-link
@@ -58,14 +56,15 @@
 		</div>
 	</nav>
 
-	<div id="workbench">
-		<app-menu class="d-none d-md-block"
-			id="menu"></app-menu>
-		<div id="view">
-
-			<router-view class="container-fluid"></router-view>
+	<div id="workbench" class="w-100">
+		<app-menu class="d-none d-md-block h-100"
+			id="menu">
+		</app-menu>
+		<div id="view" class="h-100">
+			<router-view class="container-fluid pt-3"></router-view>
 		</div>
 	</div>
+	
 </div>
 </template>
 
@@ -120,7 +119,13 @@ export default {
 		isIllegal() {
 			return this.$store.getters["range/isIllegal"];
 		},
-		datepickerToSpanClass() {
+		timeFromModelIcon() {
+			return {
+				"fa-minus": this.isDuration,
+				"fa-chevron-left": !this.isDuration
+			};
+		},
+		timeToModelIcon() {
 			return {
 				"fa-step-forward": this.isCurrent,
 				"fa-chevron-right": !this.isCurrent && !this.isIllegal,
@@ -136,17 +141,10 @@ export default {
 
 #global-nav {
 	user-select: none;
-
-	#toolbar li {
-		// border-left: 1px solid @dark-5;
-		// border-right: 1px solid @dark-5;
-		// padding: 0 .23rem;
-	}
 }
 
 #workbench {
 	position: absolute;
-	width: 100%;
 	top: 3.5rem;
 	right: 0;
 	bottom: 0;
@@ -156,9 +154,8 @@ export default {
 
 	#menu {
 		background: @menu-bg;
-		width: @menu-width;
+		width: @menu;
 		position: absolute;
-		height: 100%;
 		overflow-y: auto;
 	}
 
@@ -167,12 +164,8 @@ export default {
 		top: 0;
 		right: 0;
 		bottom: 0;
-		left: @menu-width;
-		height: 100%;
+		left: @menu;
 		overflow-y: auto;
-		& > div.container-fluid {
-			padding-top: 15px;
-		}
 	}
 }
 
@@ -190,9 +183,8 @@ export default {
 		animation: illegal 0.5s linear infinite;
 	}
 
-	.dropdown-picker {
+	.dropdown-picker-card {
 		width: 38rem;
-		padding: 0;
 		top: 2.875rem;
 		left: -28rem;
 
@@ -203,10 +195,10 @@ export default {
 			position: absolute;
 			top: -6px;
 			right: 68px;
-			.timepicker();
+			.arrow-picker-dropdown();
 		}
 
-		div.dropdown-item {
+		.dropdown-item {
 			&:active,
 			&:focus {
 				color: #212529;
@@ -217,7 +209,7 @@ export default {
 			}
 		}
 
-		div.card-body {
+		.card-body {
 			li.text-primary {
 				cursor: pointer;
 			}
@@ -228,20 +220,6 @@ export default {
 			&.active {
 				color: #495057;
 			}
-		}
-		// .nav-link:not(.active) {
-			
-		// 	&:hover {
-		// 		border-color: @white @white @white;
-		// 		background: #e9ecef;
-		// 	}
-		// }
-		i.fa {
-			margin-right: 0.5em;
-		}
-
-		.alert {
-			margin: 10px 0;
 		}
 	}
 }

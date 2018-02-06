@@ -104,12 +104,3 @@ export default {
 	
 }
 </script>
-
-<style lang="less">
-.form-group.row label {
-	padding-top: 7px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-</style>

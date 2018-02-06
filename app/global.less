@@ -24,32 +24,31 @@ body {
 @group-border: #5E626F;
 
 @load-icon: 300px;
-@menu-width: 226px;
+@menu: 226px;
 
-@logo-vertical: 15px;
-@logo-horizontal: 20px;
 @base: 10px;
 
-.border (@width: 1px, @style: solid, @color: @dark-5) {
+.group (@width: 1px, @style: solid, @color: @group-border) {
 	border: @arguments;
 }
-.default-group-arrow (@width: 4px, @style: solid, @color: transparent) {
+
+.arrow-group-default (@width: 4px, @style: solid, @color: transparent) {
 	border-top: @arguments;
 	border-bottom: @arguments;
 	border-left: @width @style;
 }
-.expanded-group-arrow (@width: 4px, @style: solid, @color: transparent) {
+.arrow-group-expand (@width: 4px, @style: solid, @color: transparent) {
 	border-top: @width @style;
 	border-left: @arguments;
 	border-right: @arguments;
 }
-.select-item-arrow (@width: 6px, @style: solid, @color: transparent) {
+.arrow-group-item-select (@width: 6px, @style: solid, @color: transparent) {
 	border-top: @arguments;
 	border-bottom: @arguments;
 	border-right: @width @style @white;
 }
 
-.timepicker (@width: 6px, @style: solid, @color: transparent) {
+.arrow-picker-dropdown (@width: 6px, @style: solid, @color: transparent) {
 	border-bottom: @width @style @white;
 	border-left: @arguments;
 	border-right: @arguments; 
@@ -63,12 +62,14 @@ body {
 .dropdown-toggle::after {
 	display: none;
 }
+
 .load-icon {
 	width: @load-icon;
 	position: fixed;
 	left: 50%;
 	top: @load-icon;
 	margin-left: -@load-icon / 2;
+	margin-top: -@load-icon / 2;
 	opacity: .5;
 	animation: loading 3s linear infinite;
 }
