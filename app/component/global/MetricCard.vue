@@ -1,7 +1,7 @@
 <template>
 <div class="card text-center bg-light metric w-100 rounded-0">
-	<div class="card-header text-muted border-bottom-0 pb-0">{{title||'Untitled'}}</div>
-	<div class="card-body">
+	<div class="card-header text-muted border-bottom-0 w-100 pt-2">{{title||'Untitled'}}</div>
+	<div class="card-body h-100">
 		<slot></slot>
 	</div>
 </div>
@@ -25,15 +25,20 @@ export default {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		background-color: transparent;
+		padding-bottom: 1.35rem;
 	}
 
 	> .card-body {
+		padding-top: .5rem;
 		.card-text {
 			font-size: 5rem;
 			color: gray;
 			text-align: center;
 			padding: .25rem;
 		}
+	}
+	> .card-body:empty {
+		padding: 0.5rem 1.25rem 3rem;
 	}
 	//TODO chrome responsive
 	> .card-body:empty::after {
