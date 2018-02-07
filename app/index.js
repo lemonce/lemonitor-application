@@ -31,4 +31,4 @@ export default { router, store, i18n, menu };
 
 window.addEventListener('load', () => {
 	$app.$mount('#app');
-})
+});
