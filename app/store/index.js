@@ -14,6 +14,9 @@ const store = new Vuex.Store({
 	modules: { menu, range },
 	state: {
 		lang: 'English',
+		user: {
+			isLogin: true
+		}
 	}
 });
 

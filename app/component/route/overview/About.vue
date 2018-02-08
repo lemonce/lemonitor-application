@@ -1,21 +1,21 @@
 <template>
 	<div>
-		<h3>{{$t('label.about')}}&nbsp;product.name<small
-			class="pull-right text-muted">{{$t('label.version')}}&nbsp;:&nbsp;product.version</small></h3>
+		<h3>{{$t('label.about')}}&nbsp;{{product.name}}<small
+			class="pull-right">{{$t('label.version')}}&nbsp;:&nbsp;{{product.version}}</small></h3>
 		<hr>
 
 		<div class="row">
 			<div class="col-6">
 				<h4>{{$t('label.authors')}}</h4>
-				<p>product.author</p>
+				<p>{{product.author}}</p>
 			</div>
 		</div>
 
 		<h4>{{$t('label.description')}}</h4>
-		<p>product.description</p>
+		<p>{{product.description}}</p>
 
 		<h4>{{$t('label.license')}}</h4>
-		<pre id="app-license">product.license</pre>
+		<pre id="app-license">{{product.license}}</pre>
 
 		<h4>{{$t('about.server.hardware')}}</h4>
 		<div class="row">
@@ -28,9 +28,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>item</td>
-							<td>value</td>
+						<tr v-for="(value, item) in env.os"
+							:key="item">
+							<td>{{item}}</td>
+							<td>{{value}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -48,9 +49,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>item</td>
-							<td>version</td>
+						<tr v-for="(version, item) in env.versions"
+							:key="item">
+							<td>{{item}}</td>
+							<td>{{version}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -70,12 +72,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>extension.name</td>
-						<td>extension.version</td>
-						<td>extension.license</td>
-						<td>extension.author</td>
-						<td>extension.description</td>
+					<tr v-for="(extension, index) in extensionList"
+						:key="index">
+						<td>{{extension.name}}</td>
+						<td>{{extension.version}}</td>
+						<td>{{extension.license}}</td>
+						<td>{{extension.author}}</td>
+						<td>{{extension.description}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -84,13 +87,35 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
 	name: 'maintance-about',
 	data() {
 		return {
 			extensionList: {},
-			
+			env: this.$Data({
+				start: 0,
+				versions: {},
+				os: {}
+			}, () => {
+				return axios('api/environment').then(res => {
+					this.env.start = res.data.appStartTime;
+					this.env.versions = res.data.versions;
+					this.env.os = res.data.os;
+				});
+			}),
+			product: this.$Data({
+				name: '',
+				author: '',
+				version: '0.0.0',
+				description: '',
+				license: ''
+			}, () => {
+				return axios('api/info').then(res => {
+					Object.assign(this.product, res.data);
+				});
+			})
 		}
 	}
 }

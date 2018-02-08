@@ -50,7 +50,7 @@ export default {
 	props: {
 		value: {
 			type: Number,
-			required:true,
+			required: true,
 			default() {
 				return {};
 			}
@@ -73,15 +73,17 @@ export default {
 	computed: {
 		mixedOptions() {
 			return Object.assign({}, defaultOptions, {
-				series:[{
-					name: 'speed',
-					data: [this.value],
-					dataLabels: {
-						format: 
-							`<div style="text-align: center"><span style="font-size: 16px;color: #000"` +
-							`>{y}</span><br/><span style="font-size: 12px">${this.unit}</span></div>`
+				series:[
+					{
+						name: 'speed',
+						data: [this.value],
+						dataLabels: {
+							format: 
+								`<div style="text-align: center"><span style="font-size: 16px;color: #000"` +
+								`>{y}</span><br/><span style="font-size: 12px">${this.unit}</span></div>`
+						}
 					}
-				}],
+				],
 				yAxis: Object.assign({}, defaultYAxisOptions, {
 					min: this.min,
 					max: this.max
@@ -89,5 +91,5 @@ export default {
 			});
 		}
 	}
-}
+};
 </script>

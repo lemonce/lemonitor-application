@@ -37,10 +37,10 @@ export default {
 			padding: .25rem;
 		}
 	}
+	//[TODO] Incompatible with Chrome and Firefox or Edge
 	> .card-body:empty {
 		padding: 0.5rem 1.25rem 3rem;
 	}
-	//TODO chrome responsive
 	> .card-body:empty::after {
 		content: '';
 		height: 100%;

@@ -48,12 +48,12 @@ Highcharts.setOptions(Highcharts.theme = {
 			}
 		},
 		solidgauge: {
-			dataLabels: {
-				y: 5,
-				borderWidth: 9,
-				useHTML: true
-			}
-		},
+            dataLabels: {
+                y: 5,
+                borderWidth: 0, //[TODO] This setting is not effective!
+                useHTML: true
+            }
+        },
 		pie: {
 			dataLabels: {
 				style: {
