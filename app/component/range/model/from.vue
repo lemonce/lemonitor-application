@@ -17,11 +17,10 @@
 		<div class="form-group">
 			<label for="timepicker-from">{{$t('selectDate.time')}}</label>
 			<timepicker v-model="options.time"
-				id="timepicker-from"
 				hide-clear-button></timepicker>
 		</div>
 
-		<h4>{{$t('range.quick')}}</h4>
+		<label>{{$t('range.quick')}}</label>
 		<ul class="list-group list-unstyled">
 			<li v-for="(presetFrom, index) in preset.time.from"
 				:key="index"
@@ -56,6 +55,11 @@ export default {
 		value: {
 			type: Number
 		}
+	},
+	mounted() {
+		const timepickerFrom = document.querySelector('input.display-time');
+		
+		timepickerFrom.setAttribute('id', 'timepicker-from');
 	},
 	watch: {
 		timestamp: {

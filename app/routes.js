@@ -67,21 +67,23 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 	if (to.path === '/' || to.path === '/home') {
-		if (!router.app.$options.store.state.user.isLogin) {
+		if (!router.app.$store.state.user.isLogin) {
 			router.push({
 				path: '/login'
 			})
-		}
+		};
 	}
-
+	
 	if (to.path === '/login') {
-		if (router.app.$options.store.state.user.isLogin) {
+		if (router.app.$store.state.user.isLogin) {
 			router.push({
 				path: '/home'
 			})
-		}
-	}
+		};
 
+		console.log(router.app)
+	}
+	
 	next();
 });
 

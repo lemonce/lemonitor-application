@@ -2,43 +2,44 @@
 <div id="statistics">
 	<div class="row">
 		<div class="col-md-6 col-lg-3">
-			<metric-card title="Session">
-				<p class="card-text">1</p>
-				
-			</metric-card>
+			<running-timming></running-timming>
 		</div>
 		<div class="col-md-6 col-lg-3">
-			<metric-card>
-				<chart-gauge :min="0" :max="100"
-					:unit="'%'"
-					:value="10"></chart-gauge>
-			</metric-card>
+			<active-session></active-session>
 
 		</div>
 		<div class="col-md-6 col-lg-3">
-			<metric-card></metric-card>
+			<cpu-usage-last></cpu-usage-last>
 
 		</div>
 		<div class="col-md-6 col-lg-3">
-			<metric-card></metric-card>
+			<memory-usage-last></memory-usage-last>
 			
 		</div>
 	</div>
 
-	<metric-card title="cpu usage" class="mt-3">
-		<chart-linear :series="[{
-			type: 'areaspline',
-			name: 'Cpu Usage Per 1 Min',
-			data: [23, 32, 54, 23]
-		}]"
-		:xAxis="{ type: 'datetime' }"
-		:yAxis="[{
-			labels: {
-				format: '{value}%'
-			}
-		}]">
+	<cpu-usage></cpu-usage>
 
-		</chart-linear>
-	</metric-card>
+	<memory-usage></memory-usage>
 </div>
 </template>
+
+<script>
+import CpuUsageLast from "./statistics/cpu-usage-last.vue";
+import CpuUsage from "./statistics/cpu-usage.vue";
+import MemoryUsageLast from "./statistics/memory-usage-last.vue";
+import MemoryUsage from "./statistics/memory-usage.vue";
+import RunningTimming from "./statistics/running-timming.vue";
+import ActiveSession from "./statistics/session.vue";
+
+export default {
+	components: {
+		CpuUsageLast,
+		CpuUsage,
+		MemoryUsageLast,
+		MemoryUsage,
+		RunningTimming,
+		ActiveSession
+	}
+};
+</script>

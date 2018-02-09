@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="col-12">
-		<h4>{{$t('range.quick')}}</h4>
+		<label>{{$t('range.quick')}}</label>
 		<ul class="list-group list-unstyled row">
 			<li class="col-4 text-primary"
 				v-for="(day, label) in preset.duration"
