@@ -1,7 +1,7 @@
 <template>
-<div class="card text-center bg-light metric w-100 rounded-0">
-	<div class="card-header text-muted border-bottom-0 w-100 pt-2">{{title||'Untitled'}}</div>
-	<div class="card-body h-100">
+<div class="bg-light metric">
+	<div class="metric-header text-muted text-center w-100 pt-2">{{title||'Untitled'}}</div>
+	<div class="metric-body h-100">
 		<slot></slot>
 	</div>
 </div>
@@ -17,31 +17,39 @@ export default {
 <style lang="less">
 @import '~app/global.less';
 
-.card.metric {
+.metric {
 	height: 200px;
+	position: relative;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
 
-	> .card-header {
+	> .metric-header {
+		position: absolute;
+		top: 0;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		background-color: transparent;
-		padding-bottom: 1.35rem;
 	}
 
-	> .card-body {
-		padding-top: .5rem;
-		.card-text {
+	> .metric-body {
+		width: 100%;
+		padding: 1rem;
+		padding-top: 1.75rem;
+		.metric-text {
 			font-size: 5rem;
 			color: gray;
 			text-align: center;
 			padding: .25rem;
+			padding-top: 2rem;
 		}
 	}
 	//[TODO] Incompatible with Chrome and Firefox or Edge
-	> .card-body:empty {
-		padding: 0.5rem 1.25rem 3rem;
+	> .metric-body:empty {
+		padding: 1.25rem;
+		padding-top: 3rem;
 	}
-	> .card-body:empty::after {
+	> .metric-body:empty::after {
 		content: '';
 		height: 100%;
 		display: block;
