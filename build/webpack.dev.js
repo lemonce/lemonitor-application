@@ -23,6 +23,4 @@ application.plugins.push(new HtmlWebpackPlugin({
 	inject: 'head'
 }));
 
-process.env.NODE_ENV = 'development';
-
 module.exports = application;

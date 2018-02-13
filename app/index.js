@@ -30,5 +30,7 @@ const $app = new Vue(Object.assign({ i18n, router, store }, App));
 export default { router, store, i18n, menu };
 
 window.addEventListener('load', () => {
-	$app.$mount('#app');
+	axios.get('/api/noop').then(() => {
+		$app.$mount('#app');
+	});
 });

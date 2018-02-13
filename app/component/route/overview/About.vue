@@ -99,11 +99,11 @@ export default {
 				versions: {},
 				os: {}
 			}, () => {
-				return axios('api/environment').then(res => {
-					this.env.start = res.data.appStartTime;
-					this.env.versions = res.data.versions;
-					this.env.os = res.data.os;
-				});
+				// return axios('api/environment').then(res => {
+				// 	this.env.start = res.data.appStartTime;
+				// 	this.env.versions = res.data.versions;
+				// 	this.env.os = res.data.os;
+				// });
 			}),
 			product: this.$Data({
 				name: '',
@@ -112,8 +112,14 @@ export default {
 				description: '',
 				license: ''
 			}, () => {
-				return axios('api/info').then(res => {
-					Object.assign(this.product, res.data);
+				axios('api/about/meta').then(res => {
+					Object.assign(this.product, res.data.data);
+				}).then(() => {
+					return axios('api/about/license').then(res => {
+						Object.assign(this.product, {
+							license: res.data.data.text
+						});
+					});
 				});
 			})
 		}
