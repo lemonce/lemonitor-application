@@ -1,0 +1,5 @@
+application:
+  static:
+    # express static options
+  dev:
+    port: 8080

@@ -1,16 +1,42 @@
 'use strict';
-
-const express = require('express');
+const webpack = require('webpack');
+const debug = require('debug')('lemonitor-application:');
+const lemonitor = require('lemonitor-service');
 const path = require('path');
-const http = require('http');
+const express = require('express');
+const devServer = require('./dev');
 
-//express middleware
+const { application, config } = lemonitor;
+const htdocPath = config.getPath('htdocs');
+const publicPath = path.resolve(htdocPath, './public');
+const webpackProd = require('../build/webpack.prod');
 
-const app = module.exports = express();
+if (process.env.NODE_ENV === 'production') {
+	lemonitor.on('bootstrap', promiseList => {
+		debug('Compiling bundles.');
 
-const server = http.createServer(app);
+		const compiling = new Promise((resolve, reject) => {
+			webpack(webpackProd, (err, stats) => {
+				if (err) {
+					return reject(err);
+				}
+			
+				debug(stats.toString('minimal'));
+		
+				resolve();
+			});
+		}).then(() => {
+			application.use('/', express.static(publicPath));
 
-server.listen(8800, () => {
-	console.log('hha')
-});
+			debug('Compiling successfully.');
+		});
 
+		promiseList.push(compiling);
+	});
+} else {
+	lemonitor.on('launch', () => {
+		debug('Starting webpack dev server. Wating...');
+	
+		devServer();
+	});
+}

@@ -21,6 +21,15 @@ const defaultOptions = {
 			shape: 'arc'
 		}
 	},
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+            }
+        }
+    },
 	tooltip: {
 		enabled: false
 	}
@@ -78,9 +87,7 @@ export default {
 						name: 'speed',
 						data: [this.value],
 						dataLabels: {
-							format: 
-								`<div style="text-align: center"><span style="font-size: 16px;color: #000"` +
-								`>{y}</span><br/><span style="font-size: 12px">${this.unit}</span></div>`
+							format: `<span style="font-size:18px">{y}</span> ${this.unit}`
 						}
 					}
 				],
