@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '~app/global.less';
+@import '~app/style/var.less';
 
 .metric {
 	height: 200px;

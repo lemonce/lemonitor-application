@@ -2,6 +2,8 @@
 const path = require('path');
 const debug = require('debug')('lemonitor-application:');
 
+require(process.cwd());
+
 const aliasStore = {
 	app: path.resolve(__dirname, '../app'),
 	axios: 'axios/dist/axios.min.js',

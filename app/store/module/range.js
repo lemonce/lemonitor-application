@@ -28,7 +28,7 @@ export default {
 			return state.to.type === 'now';
 		},
 		isIllegal(state, {from, to}) {
-			return to - from < 0;
+			return to < from;
 		}
 	},
 	state: {

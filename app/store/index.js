@@ -7,16 +7,14 @@ Vue.use(Vuex);
 
 import menu from './module/menu';
 import range from './module/range';
+import account from './module/account';
 
 const UPDATE_NOW_INTERVAL = 30 * 1000;
 
 const store = new Vuex.Store({
-	modules: { menu, range },
+	modules: { menu, range, account },
 	state: {
-		lang: 'English',
-		user: {
-			isLogin: true
-		}
+		lang: 'English'
 	}
 });
 

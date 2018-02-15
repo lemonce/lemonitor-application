@@ -9,11 +9,12 @@ const devServer = require('./dev');
 const { application, config } = lemonitor;
 const htdocPath = config.getPath('htdocs');
 const publicPath = path.resolve(htdocPath, './public');
-const webpackProd = require('../build/webpack.prod');
 
 if (process.env.NODE_ENV === 'production') {
 	lemonitor.on('bootstrap', promiseList => {
 		debug('Compiling bundles.');
+		
+		const webpackProd = require('../build/webpack.prod');
 
 		const compiling = new Promise((resolve, reject) => {
 			webpack(webpackProd, (err, stats) => {

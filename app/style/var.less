@@ -1,9 +1,3 @@
-html {
-	font-size: 14px;
-}
-body {
-	font-family: "Microsoft Yahei", Helvetica, sans-serif, Arial, sans-serif, monospace;
-}
 
 @white: #FFF;
 @gray-1: #EEE;
@@ -52,47 +46,4 @@ body {
 	border-bottom: @width @style @white;
 	border-left: @arguments;
 	border-right: @arguments; 
-}
-.time-picker {
-	input.display-time {
-		cursor: pointer;
-	}
-}
-
-.dropdown-toggle::after {
-	display: none;
-}
-
-.load-icon {
-	width: @load-icon;
-	position: fixed;
-	left: 50%;
-	top: @load-icon;
-	margin-left: -@load-icon / 2;
-	margin-top: -@load-icon / 2;
-	opacity: .5;
-	animation: loading 3s linear infinite;
-}
-
-@keyframes loading {
-	25% {
-		opacity: .95;
-	}
-	50% {
-		opacity: 1;
-	}
-	75% {
-		opacity: .95;
-	}
-}
-
-@keyframes illegal {
-	from {
-		color: @gray-2;
-		opacity: .5;
-	}
-	to {
-		color: @white;
-		opacity: 1;
-	}
 }

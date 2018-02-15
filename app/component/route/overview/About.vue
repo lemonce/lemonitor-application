@@ -99,7 +99,7 @@ export default {
 				versions: {},
 				os: {}
 			}, () => {
-				return axios('api/about/environmnet').then(res => {
+				return axios('api/about/environment').then(res => {
 					const { appStartTime, versions, os } = res.data.data;
 
 					this.env.start = appStartTime;

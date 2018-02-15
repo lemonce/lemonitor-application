@@ -1,6 +1,8 @@
 'use strict';
 const application = require('./webpack.base');
 
+application.devtool = 'inline-source-map';
+
 // Dev server options
 application.devServer = {
 	proxy: {

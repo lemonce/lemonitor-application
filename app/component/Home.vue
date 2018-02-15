@@ -18,6 +18,7 @@
 				id="time-range-picker">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"
+						:class="{'illegal-to': isIllegal}"
 						@click="openTimeFrom()"><i
 							class="fa mr-2"
 							:class="timeFromModelIcon"></i>{{formatedFrom}}</a>
@@ -137,7 +138,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '~app/global.less';
+@import '~app/style/var.less';
 
 #global-nav {
 	user-select: none;

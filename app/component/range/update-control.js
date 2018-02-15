@@ -1,5 +1,4 @@
 'use strict';
-
 const RANGE_ENSURE_INTERVAL = 2000;
 
 export default {
@@ -22,6 +21,6 @@ export default {
 					this.$Data.startAll();
 				}
 			}, RANGE_ENSURE_INTERVAL);
-		})
+		});
 	}
-}
+};

@@ -26,13 +26,13 @@ export default {
 				}];
 			}
 		},
-		xAixs: {
+		xAxis: {
 			type: Object,
 			default() {
 				return {};
 			}
 		},
-		yAixs: {
+		yAxis: {
 			type: Array,
 			default() {
 				return [];
@@ -42,9 +42,14 @@ export default {
 	computed: {
 		mixedOptions() {
 			return Object.assign({}, {
+				tooltip: {
+					crosshairs: true,
+					shared: true,
+					valueSuffix: '%'
+				},
 				series: this.series,
-				xAixs: Object.assign({}, defaultAxis, this.xAixs),
-				yAixs: this.yAixs
+				xAxis: Object.assign({}, defaultAxis, this.xAxis),
+				yAxis: this.yAxis
 			});
 		}
 	}

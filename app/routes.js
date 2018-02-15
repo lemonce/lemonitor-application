@@ -13,12 +13,11 @@ import Config from './component/route/Config.vue';
 import Statistics from './component/route/overview/Statistics.vue';
 import About from './component/route/overview/About.vue';
 
-import Login from './component/Login.vue';
+import Signin from './component/Signin.vue';
 
 const routes = [
 	{
 		path: '/',
-		alias: '/home',
 		component: Home,
 		children: [
 			{
@@ -46,35 +45,13 @@ const routes = [
 	},
 	
 	{
-		path: '/login',
-		component: Login
+		path: '/account/signin',
+		component: Signin
 	}
 ];
 
 const router = new VueRouter({
 	routes
-});
-
-router.beforeEach((to, from, next) => {
-	if (to.path === '/' || to.path === '/home') {
-		if (!router.app.$store.state.user.isLogin) {
-			router.push({
-				path: '/login'
-			})
-		};
-	}
-	
-	if (to.path === '/login') {
-		if (router.app.$store.state.user.isLogin) {
-			router.push({
-				path: '/home'
-			})
-		};
-
-		console.log(router.app)
-	}
-	
-	next();
 });
 
 export default router;

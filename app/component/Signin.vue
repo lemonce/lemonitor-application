@@ -10,6 +10,7 @@
 					<div class="form-group">
 						<label for="username">Username</label>
 						<input type="text"
+							v-model="options.name"
 							class="form-control"
 							id="username">
 					</div>
@@ -18,7 +19,8 @@
 						<div class="float-right">
 							<a href="">Forgot password?</a>
 						</div>
-						<input type="text"
+						<input type="password"
+							v-model="options.password"
 							class="form-control"
 							id="password">
 					</div>
@@ -37,10 +39,19 @@
 <script>
 export default {
 	name: 'login',
+	data() {
+		return {
+			options: {
+				name: '',
+				password: ''
+			}
+		}
+	},
 	methods: {
 		signIn() {
-			console.log('dd');
-			this.$store.state.user.isLogin = true;
+			this.$store.dispatch('account/signIn', this.options).then(() => {
+				this.$router.push({ path: '/' });
+			});
 		}
 	}
 }

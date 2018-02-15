@@ -26,7 +26,7 @@ export default {
 	},
 	methods: {
 		renderer() {
-			this.chart.update(this.oprions);
+			this.chart.update(this.options);
 		}
 	},
 	watch: {

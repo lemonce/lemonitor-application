@@ -2,8 +2,8 @@
 <metric-card :title="$t('statistics.memory')">
 	<chart-linear :series="[{
 		type: 'area',
-		name: 'Memory Usage Per 1 Hour',
-		data: [34, 65, 34, 67, 34]
+		name: 'Memory Usage',
+		data: memoryUsage
 	}]"
 	:xAxis="{ type: 'datetime' }"
 	:yAxis="[{
@@ -13,3 +13,25 @@
 	}]"></chart-linear>
 </metric-card>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+	data() {
+		const memoryUsage = this.$Data([], () => {
+			return axios(`/api/status/memory/log`, { 
+				params: {
+					from: new Date(this.$store.getters['range/from']),
+					to: new Date(this.$store.getters['range/to'])
+				}
+			}).then(({data}) => {
+				this.memoryUsage = data.data.dataset;
+			});
+		}, 60 * 1000);
+
+		return { memoryUsage };
+	}
+};
+</script>
+

@@ -147,7 +147,7 @@ export default {
 			groupStorage.forEach(dataSourceGroup => {
 				dataSourceGroup.start();
 			});
-		}
+		};
 
 		Vue.mixin({
 			beforeCreate() {
