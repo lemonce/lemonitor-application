@@ -87,8 +87,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
 	name: 'maintance-about',
 	data() {
@@ -98,8 +96,8 @@ export default {
 				start: 0,
 				versions: {},
 				os: {}
-			}, () => {
-				return axios('api/about/environment').then(res => {
+			}, ({ http }) => {
+				return http.get('api/about/environment').then(res => {
 					const { appStartTime, versions, os } = res.data.data;
 
 					this.env.start = appStartTime;
@@ -113,8 +111,8 @@ export default {
 				version: '0.0.0',
 				description: '',
 				license: ''
-			}, () => {
-				axios('api/about/meta').then(res => {
+			}, ({ http }) => {
+				http('api/about/meta').then(res => {
 					Object.assign(this.product, res.data.data);
 				});
 			})

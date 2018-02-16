@@ -5,7 +5,7 @@ export default {
 	namespaced: true,
 	state: {
 		signedIn: false,
-		accountId: -1
+		id: null
 	},
 	actions: {
 		signIn({ commit }, { name, password }) {
@@ -23,7 +23,7 @@ export default {
 	},
 	mutations: {
 		updateAccount(state, accountId = null) {
-			state.accountId = accountId;
+			state.id = accountId;
 			state.signedIn = Boolean(accountId);
 		}
 	}

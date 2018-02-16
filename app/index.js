@@ -27,8 +27,3 @@ const $app = new Vue(Object.assign({ i18n, router, store }, App));
 export default { router, store, i18n, menu };
 
 window.addEventListener('load', () => $app.$mount('#app'));
-
-import axios from 'axios';
-window.logout = function logout() {
-	axios.delete('/api/account/session');
-};

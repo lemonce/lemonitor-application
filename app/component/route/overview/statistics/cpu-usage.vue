@@ -16,12 +16,11 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
 	data() {
-		const cpuUsage = this.$Data([], () => {
-			return axios(`/api/status/cpu/log`, { 
+		const cpuUsage = this.$Data([], ({ http }) => {
+			return http(`/api/status/cpu/log`, { 
 				params: {
 					from: new Date(this.$store.getters['range/from']),
 					to: new Date(this.$store.getters['range/to'])

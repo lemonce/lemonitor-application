@@ -1,7 +1,14 @@
 {
     "properties": {
         "dev": {
-            "port": 8080
+            "type": "object",
+            "default": {},
+            "properties": {
+                "port": {
+                    "type": "integer",
+                    "default": 8080
+                }
+            }
         }
     }
 }

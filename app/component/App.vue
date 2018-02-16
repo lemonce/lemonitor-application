@@ -14,33 +14,59 @@ export default {
 			return axios.get('/api/noop', {
 				timeout: 10000
 			}).then(res => {
-				const accountId = res.data.data.account;
+				const newId = res.data.data.account;
+				const oldId = this.$store.state.account.id;
 
-				this.$store.commit('account/updateAccount', accountId);
+				this.$store.commit('account/updateAccount', newId);
 
-				if (!accountId) {
-					this.$router.push({ path: signInPath });
-				}
-
-				return Boolean(accountId);
-			}, () => {
-				//TODO 处理连接错误
-				console.log('连接错误');
+				return { oldId, newId };
 			});
 		}
 	},
-	mounted() {
+	beforeMount() {
 		this.updateSession();
 
 		this.watcher = setInterval(this.updateSession, CHECK_INTERVAL);
 
-		axios.interceptors.response.use(function (response) {
-			return response;
-		}, err => {
-			this.updateSession();
+		this.$router.beforeEach((to, from, next) => {
+			this.updateSession().then(({ oldId, newId }) => {
+				const requireAccount =
+					to.matched.some(record => record.meta.requireAccount);
 
-			return Promise.reject(err);
+				if (newId) {
+					if (!requireAccount) {
+						next('/');
+					}
+				} else {
+					if (requireAccount) {
+						next('/login');
+					}
+				}
+
+				next();
+			}, () => {
+				//TODO 处理连接错误
+				console.log('连接错误');
+
+				next(false);
+			});
 		});
+
+		const http = axios.create();
+
+		// http.interceptors.response.use(function (response) {
+		// 	return response;
+		// }, originalError => {
+		// 	this.updateSession().catch(error => {
+		// 		if (error.request) {
+		// 		console.log(error.request);
+		// 		}
+		// 	});
+
+		// 	return Promise.reject(originalError);
+		// });
+
+		this.$Data.registerHelper('http', http);
 	},
 	destroyed() {
 		clearInterval(this.watcher);

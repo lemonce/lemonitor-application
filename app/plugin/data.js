@@ -1,5 +1,6 @@
 'use strict';
 let groupStorage = [];
+const helper = {};
 
 const MIN_UPDATE_INTERVAL = 30 * 1000;
 const DIVISION_FACTOR = 4;
@@ -28,7 +29,7 @@ class DataSource {
 
 	$updatePromise() {
 		return Promise.resolve()
-			.then(() => this.$update())
+			.then(() => this.$update(helper))
 			.then(() => this.$lastRequestTime = Date.now());
 	}
 
@@ -123,7 +124,7 @@ export default {
 	install(Vue) {
 		const Data = Vue.prototype.$Data = function (define, updater, cycle) {
 			if (!cycle) {
-				Promise.resolve().then(updater());
+				Promise.resolve().then(updater(helper));
 			} else {
 				this.$dataGroup.createDataSource(updater, cycle);
 			}
@@ -147,6 +148,10 @@ export default {
 			groupStorage.forEach(dataSourceGroup => {
 				dataSourceGroup.start();
 			});
+		};
+
+		Data.registerHelper = function (name, fn) {
+			helper[name] = fn;
 		};
 
 		Vue.mixin({

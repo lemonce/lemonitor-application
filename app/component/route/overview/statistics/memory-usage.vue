@@ -15,12 +15,10 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
 	data() {
-		const memoryUsage = this.$Data([], () => {
-			return axios(`/api/status/memory/log`, { 
+		const memoryUsage = this.$Data([], ({ http }) => {
+			return http(`/api/status/memory/log`, { 
 				params: {
 					from: new Date(this.$store.getters['range/from']),
 					to: new Date(this.$store.getters['range/to'])

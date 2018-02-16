@@ -53,6 +53,13 @@
 					:title="$t('nav.config')">
 					<a class="nav-link"><i class="fa fa-cog"></i></a>
 				</router-link>
+				<router-link
+					tag="li"
+					class="nav-item"
+					to="/config"
+					:title="$t('nav.config')">
+					<a class="nav-link"><i class="fa fa-user"></i></a>
+				</router-link>
 			</ul>
 		</div>
 	</nav>
