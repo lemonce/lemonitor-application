@@ -10,11 +10,11 @@
 export default {
 	data() {
 		return {
-			memoryUsage: this.$Data(0, ({ http }) => {
+			memoryUsage: this.$Data(0, (http) => {
 				return http("/api/status/memory/state").then(({ data }) => {
 					this.memoryUsage = Number((data.data[0] * 100).toFixed(1));
 				});
-			}, 60 * 1000)
+			}, 60 * 1000, true)
 		}
 	}
 }

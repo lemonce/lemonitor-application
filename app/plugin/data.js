@@ -1,24 +1,26 @@
 'use strict';
-let groupStorage = [];
-const helper = {};
+import axios from 'axios';
 
+const http = axios.create();
 const MIN_UPDATE_INTERVAL = 30 * 1000;
-const DIVISION_FACTOR = 4;
+
+const DEFAULT_AFTER_UPDATE = v => v;
+let $afterUpdate = DEFAULT_AFTER_UPDATE;
 
 class DataSource {
-	constructor(update, cycle) {
+	constructor(update, cycle, keepUpdating = false) {
 		if (typeof update !== 'function') {
 			throw new Error('A function as updater excepted.');
 		}
 
-		if (!Number.isInteger(cycle) || cycle < 0) {
+		if (Number.isInteger(cycle) && cycle < MIN_UPDATE_INTERVAL) {
 			throw new Error('An unsigned integer number as cycle excepted.');
 		}
 
 		this.$update = update;
 		this.$lastRequestTime = 0;
-
-		this.cycle = Math.max(MIN_UPDATE_INTERVAL, cycle);
+		this.cycle = cycle;
+		this.keepUpdating = keepUpdating;
 
 		this.$updatePromise();
 	}
@@ -27,143 +29,88 @@ class DataSource {
 		return Date.now() - this.$lastRequestTime < this.cycle;
 	}
 
+	get needUpdate() {
+		return this.cycle && !this.updated;
+	}
+
 	$updatePromise() {
-		return Promise.resolve()
-			.then(() => this.$update(helper))
-			.then(() => this.$lastRequestTime = Date.now());
+		return $afterUpdate(Promise.resolve()
+			.then(() => this.$update(http))
+			.then(() => this.$lastRequestTime = Date.now()));
 	}
 
 	update() {
+		if (this.needUpdate) {
+			this.$updatePromise();
+		}
+
+		return this;
+	}
+
+	forceUpdate() {
 		this.$updatePromise();
 
 		return this;
 	}
 }
 
-class DataSourceGroup {
-	constructor() {
-		this.group = [];
-
-		this.$watcher = null;
-
-		groupStorage.push(this);
-	}
-
-	createDataSource(updater, options) {
-		const dataSource = new DataSource(updater, options);
-
-		this.group.push(dataSource);
-		this.$restart();
-
-		return dataSource;
-	}
-
-	updateAll() {
-		this.group.forEach(dataSource => {
-			dataSource.update();
-		});
-
-		return this;
-	}
-
-	get watching() {
-		return this.$watcher !== null;
-	}
-
-	get interval() {
-		let minCycle = Number.MAX_SAFE_INTEGER;
-
-		this.group.forEach(dataSource => {
-			minCycle = Math.min(dataSource.cycle, minCycle);
-		});
-		
-		return minCycle / DIVISION_FACTOR;
-	}
-
-	$updateWatched() {
-		this.group.forEach(dataSource => {
-			if (dataSource.updated) {
-				return;
-			}
-
-			dataSource.update();
-		});
-	}
-	
-	$restart() {
-		return this.stop().start();
-	}
-
-	stop() {
-		clearInterval(this.$watcher);
-		this.$watcher = null;
-
-		return this;
-	}
-
-	start() {
-		if (this.watching) {
-			throw new Error(`This dataSourceGroup(id:${this.id}) is watching.`);
-		}
-		
-		this.$watcher = setInterval(() => this.$updateWatched(), this.interval);
-
-		return this;
-	}
-
-	destroy() {
-		this.stop();
-		
-		groupStorage = groupStorage.filter(dataSourceGroup => {
-			return dataSourceGroup !== this;
-		});
-	}
-}
-
 export default {
-	install(Vue) {
-		const Data = Vue.prototype.$Data = function (define, updater, cycle) {
-			if (!cycle) {
-				Promise.resolve().then(updater(helper));
-			} else {
-				this.$dataGroup.createDataSource(updater, cycle);
-			}
+	install(Vue, {
+		afterUpdate = DEFAULT_AFTER_UPDATE
+	} = {}) {
+		let isAutoUpdate = false;
+		let componentList = [];
 
-			this.$on('data-update-check');
-			this.$on('data-force-update');
+		$afterUpdate = afterUpdate;
 
-			return define;
+		const Data = Vue.prototype.$Data = function (init, updater, cycle, keep) {
+			const dataSource = new DataSource(updater, cycle, keep);
+
+			this.$dataGroup.list.push(dataSource);
+
+			return init;
 		};
 
-		Data.updateAll = function () {
-			groupStorage.forEach(dataSourceGroup => {
-				dataSourceGroup.updateAll();
-			});
+		Data.forceUpdateAll = function () {
+			componentList.forEach(group => group.forceUpdateAll());
 		};
 
-		Data.stopAll = function () {
-			groupStorage.forEach(dataSourceGroup => {
-				dataSourceGroup.stop();
-			});
-		};
-
-		Data.startAll = function () {
-			groupStorage.forEach(dataSourceGroup => {
-				dataSourceGroup.start();
-			});
-		};
-
-		Data.registerHelper = function (name, fn) {
-			helper[name] = fn;
+		Data.setAutoUpdate = function (value = false) {
+			isAutoUpdate = Boolean(value);
 		};
 
 		Vue.mixin({
 			beforeCreate() {
-				this.$dataGroup = new DataSourceGroup();
+				const group = this.$dataGroup = {
+					list: [],
+					forceUpdateAll() {
+						this.list.forEach(dataSource => dataSource.forceUpdate());
+					},
+					rootListener() {
+						group.forceUpdateAll();
+					},
+					watcher: setInterval(() => {
+						if (isAutoUpdate) {
+							group.list.forEach(dataSource => dataSource.update());
+						} else {
+							group.list.forEach(dataSource => {
+								if (dataSource.keepUpdating) {
+									dataSource.update();
+								}
+							});
+						}
+					}, 15000)
+				};
+
+				componentList.push(group);
 			},
 			destroyed() {
-				this.$off();
+				clearInterval(this.$dataGroup.watcher);
+				
+				componentList = componentList.filter(group => group !== this.$dataGroup);
 			}
 		});
+		
+		
 	}
 };

@@ -96,7 +96,7 @@ export default {
 				start: 0,
 				versions: {},
 				os: {}
-			}, ({ http }) => {
+			}, (http) => {
 				return http.get('api/about/environment').then(res => {
 					const { appStartTime, versions, os } = res.data.data;
 
@@ -111,7 +111,7 @@ export default {
 				version: '0.0.0',
 				description: '',
 				license: ''
-			}, ({ http }) => {
+			}, (http) => {
 				http('api/about/meta').then(res => {
 					Object.assign(this.product, res.data.data);
 				});

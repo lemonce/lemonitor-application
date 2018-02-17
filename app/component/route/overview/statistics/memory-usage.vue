@@ -17,7 +17,7 @@
 <script>
 export default {
 	data() {
-		const memoryUsage = this.$Data([], ({ http }) => {
+		const memoryUsage = this.$Data([], (http) => {
 			return http(`/api/status/memory/log`, { 
 				params: {
 					from: new Date(this.$store.getters['range/from']),

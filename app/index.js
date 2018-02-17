@@ -14,7 +14,16 @@ import Data from './plugin/data.js';
 Vue.use(VeeValidate);
 Vue.use(bFormSlider);
 Vue.use(VueTimepicker, { name: 'timepicker' });
-Vue.use(Data);
+Vue.use(Data, {
+	afterUpdate(updated) {
+		updated.catch(() => $app.updateSession())
+			.then((accountId) => {
+				if (!accountId) {
+					router.push('/account/signin');
+				}
+			}, $app.catchConnectionError);
+	}
+});
 
 import App from './component/App.vue';
 
@@ -33,5 +42,5 @@ window.addEventListener('load', () => {
 		}
 
 		$app.$mount('#app');
-	});
+	}, $app.catchConnectionError);
 });

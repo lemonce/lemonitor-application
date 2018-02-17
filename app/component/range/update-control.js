@@ -14,12 +14,10 @@ export default {
 				
 				this.throttleTimer = null;
 
-				this.$Data.stopAll();
-				this.$Data.updateAll();
+				const isDynamic = this.$store.getters['range/isDynamicDuration'];
 
-				if (this.$store.getters['range/isDynamicDuration']) {
-					this.$Data.startAll();
-				}
+				this.$Data.setAutoUpdate(isDynamic);
+				this.$Data.forceUpdateAll();
 			}, RANGE_ENSURE_INTERVAL);
 		});
 	}

@@ -19,24 +19,24 @@ export default {
 				this.$store.commit('account/updateAccount', accountId);
 
 				return accountId;
-			}, () => {
-				//TODO 处理连接错误
-				console.log('连接错误');
-
-				next(false);
 			});
+		},
+		catchConnectionError() {
+			//TODO 处理连接错误
+			console.log('连接错误');
 		}
 	},
 	mounted() {
+		this.$Data.setAutoUpdate(this.$store.getters['range/isDynamicDuration']);
 
-		this.watcher = setInterval(this.updateSession, CHECK_INTERVAL);
+		this.watcher = setInterval(() => {
+			this.updateSession().catch(this.catchConnectionError);
+		}, CHECK_INTERVAL);
 
 		this.$router.beforeEach((to, from, next) => {
 			this.updateSession().then((accountId) => {
 				const requireAccount =
 					to.matched.some(record => record.meta.requireAccount);
-
-				console.log(requireAccount, to, accountId)
 
 				if (accountId) {
 					if (!requireAccount) {
@@ -49,13 +49,8 @@ export default {
 				}
 
 				next();
-			});
+			}, this.catchConnectionError);
 		});
-	},
-	beforeMount() {
-		const http = axios.create();
-
-		this.$Data.registerHelper('http', http);
 	},
 	destroyed() {
 		clearInterval(this.watcher);
