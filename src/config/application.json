@@ -1,4 +1,6 @@
 {
+    "type": "object",
+    "default": {},
     "properties": {
         "dev": {
             "type": "object",

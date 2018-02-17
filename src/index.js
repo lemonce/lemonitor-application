@@ -6,38 +6,36 @@ const path = require('path');
 const express = require('express');
 const devServer = require('./dev');
 
-const { application, config } = lemonitor;
-const htdocPath = config.getPath('htdocs');
-const publicPath = path.resolve(htdocPath, './public');
+lemonitor.config.register('application', require('./config/application.json'));
 
-config.register('application', require('./config/application.json'));
+lemonitor.extend(app => {
+	const htdocPath = lemonitor.config.getPath('htdocs');
+	const publicPath = path.resolve(htdocPath, './public');
+
+	app.use('/', express.static(publicPath));
+});
 
 if (process.env.NODE_ENV === 'production') {
-	lemonitor.on('bootstrap', promiseList => {
+	lemonitor.onInit(promiseList => {
 		debug('Compiling bundles.');
 		
 		const webpackProd = require('../build/webpack.prod');
 
-		const compiling = new Promise((resolve, reject) => {
+		promiseList.push(new Promise((resolve, reject) => {
 			webpack(webpackProd, (err, stats) => {
 				if (err) {
 					return reject(err);
 				}
 			
 				debug(stats.toString('minimal'));
+				debug('Compiling successfully.');
 		
 				resolve();
 			});
-		}).then(() => {
-			application.use('/', express.static(publicPath));
-
-			debug('Compiling successfully.');
-		});
-
-		promiseList.push(compiling);
+		}));
 	});
-} else {
-	lemonitor.on('launch', () => {
+} else if (process.env.NODE_ENV === 'development') {
+	lemonitor.onLaunch(() => {
 		debug('Starting webpack dev server. Wating...');
 	
 		devServer();

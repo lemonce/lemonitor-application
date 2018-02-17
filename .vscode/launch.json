@@ -10,9 +10,9 @@
 			"name": "Launch Dev",
 			"env": {
 				"NODE_ENV": "development",
-				"DEBUG": "lemonitor:*,-lemonitor:dev"
+				"DEBUG": "lemonitor-application:*"
 			},
-			"program": "${workspaceFolder}/test/debug.js",
+			"program": "${workspaceFolder}/launch.js",
 			"cwd": "${workspaceFolder}",
 			"outputCapture": "std"
 		},
@@ -24,7 +24,7 @@
 				"NODE_ENV": "production",
 				"DEBUG": "lemonitor:*,lemonitor-application:*,-lemonitor:dev"
 			},
-			"program": "${workspaceFolder}/test/debug.js",
+			"program": "${workspaceFolder}/launch.js",
 			"cwd": "${workspaceFolder}",
 			"outputCapture": "std"
 		}

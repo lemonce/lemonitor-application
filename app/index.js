@@ -26,4 +26,12 @@ const $app = new Vue(Object.assign({ i18n, router, store }, App));
 
 export default { router, store, i18n, menu };
 
-window.addEventListener('load', () => $app.$mount('#app'));
+window.addEventListener('load', () => {
+	$app.updateSession().then((accountId) => {
+		if (!accountId) {
+			router.push('/account/signin');
+		}
+
+		$app.$mount('#app');
+	});
+});

@@ -129,6 +129,9 @@ export default {
 				this.$dataGroup.createDataSource(updater, cycle);
 			}
 
+			this.$on('data-update-check');
+			this.$on('data-force-update');
+
 			return define;
 		};
 
@@ -159,7 +162,7 @@ export default {
 				this.$dataGroup = new DataSourceGroup();
 			},
 			destroyed() {
-				this.$dataGroup.destroy();
+				this.$off();
 			}
 		});
 	}
