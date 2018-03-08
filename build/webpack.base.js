@@ -4,7 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const { getAlias, getEntry } = require('../src/package');
+const { getAlias, getEntry } = require('../');
 
 const babelLoader = {
 	loader: 'babel-loader',
@@ -59,7 +59,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+				test: /\.(eot|woff|woff2|svg|ttf)([?]?.*)$/,
 				use: [
 					{
 						loader: 'file-loader',

@@ -1,11 +1,11 @@
 {
   "name": "lemonitor-application",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development DEBUG=\"lemonitor:*,-lemonitor:db,lemonitor-application:*\" node ./launch.js",
+    "dev": "cross-env NODE_ENV=development DEBUG=\"lemonitor:*,lemonitor-application:*\" webpack-dev-server --config ./launch.js --port 8200",
     "start": "cross-env NODE_ENV=production DEBUG=\"lemonitor:,lemonitor-application:\" node ./launch.js"
   },
   "repository": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/lemonce/lemonitor-application#readme",
   "dependencies": {
-    "ajv": "^6.1.1",
+    "ajv": "^6.2.1",
     "axios": "^0.17.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -38,7 +38,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^2.30.1",
     "json-loader": "^0.5.7",
-    "lemonitor-service": "^0.1.0",
+    "lemonitor-service": "^0.1.4",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "postcss-cssnext": "^3.1.0",
@@ -56,7 +56,7 @@
     "vue-template-compiler": "^2.5.13",
     "vue-timepicker-remastered": "^0.1.4",
     "vue2-timepicker": "^0.1.4",
-    "vuejs-datepicker": "^0.9.26",
+    "vuejs-datepicker": "^0.9.28",
     "vuex": "^3.0.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
