@@ -25,8 +25,9 @@ module.exports = {
 		publicPath: '/',
 		filename: '[name].js'
 	},
+	mode: 'development',
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				loader: babelLoader,
@@ -81,7 +82,9 @@ module.exports = {
 		alias: getAlias()
 	},
 	plugins: [
-		new ExtractTextPlugin('style.css'),
+		new ExtractTextPlugin('style.css', {
+			allChunks: true
+		}),
 		new webpack.EnvironmentPlugin(['NODE_ENV']),
 		new HtmlWebpackPlugin({
 			template: `html-loader!${path.resolve(__dirname, './template/index.html')}`,
