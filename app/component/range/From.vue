@@ -1,7 +1,7 @@
 <template>
 <div id="range-from-picker"
 	class="dropdown-menu dropdown-picker-card p-0 card">
-	<div class="card-header">
+	<!-- <div class="card-header">
 		<ul class="nav nav-tabs card-header-tabs">
 			<li class="nav-item">
 				<a @click.stop="options.type = 'moment'"
@@ -16,10 +16,30 @@
 					></i>{{$t('range.duration')}}</a>
 			</li>
 		</ul>
-	</div>
-	<component class="card-body row"
+	</div> -->
+	<!-- <el-card class="box-card">
+		<div slot="header"> -->
+			<el-tabs type="card">
+				<el-tab-pane>
+					<span slot="label"
+						:class="{'is-active': options.type = 'moment'}"><i
+							class="fa fa-chevron-left"></i>{{$t('range.date')}}</span>
+					<moment></moment>
+				</el-tab-pane>
+				<el-tab-pane>
+					<span slot="label"
+						:class="{'is-active': options.type = 'duration'}"><i
+							class="fa fa-minus"></i>{{$t('range.duration')}}
+
+					</span>
+				</el-tab-pane>
+			</el-tabs>
+		<!-- </div> -->
+
+	<!-- </el-card> -->
+	<!-- <component class="card-body row"
 		v-model="options.value"
-		:is="model[this.options.type]"></component>
+		:is="model[this.options.type]"></component> -->
 
 	<div class="card-footer">
 		<button class="btn btn-primary pull-right" @click="apply()">{{$t('range.apply')}}</button>
@@ -36,6 +56,10 @@ import updateControl from './update-control';
 export default {
 	name: 'range-from',
 	mixins: [ updateControl ],
+	components: {
+		Moment,
+		Duration
+	},
 	data() {
 		return {
 			options: {

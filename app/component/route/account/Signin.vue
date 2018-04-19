@@ -2,32 +2,37 @@
 <div class="container" style="margin-top: 7rem">
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-			<div class="card">
-				<div class="card-header text-center">
-					<h4 class="card-title mb-0 py-2">Sign in</h4>
+			<el-card class="box-card">
+				<div slot="header">
+					<span>Sign in</span>
 				</div>
-				<div class="card-body">
-					<div class="form-group">
-						<label for="username">Username</label>
-						<input type="text"
-							v-model="options.name"
-							class="form-control"
-							id="username">
+				<el-form ref="options"
+					@validate="commitForm()"
+					label-position="top"
+					:model="options"
+					:rules="optionsRule">
+					<el-form-item label="Username"
+						prop="name">
+						<el-input v-model="options.name"></el-input>
+					</el-form-item>
+					<div class="clearfix">
+						<el-button style="float: right;"
+							type="text">Forgot password?</el-button>
+						<el-form-item label="Password"
+							prop="password">
+							<el-input
+								v-model="options.password"
+								type="password"></el-input>
+						</el-form-item>
 					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<div class="float-right">
-							<a href="">Forgot password?</a>
-						</div>
-						<input type="password"
-							v-model="options.password"
-							class="form-control"
-							id="password">
-					</div>
-					<button class="btn btn-primary btn-block"
-						@click="signIn()">Apply</button>
-				</div>
-			</div>
+					<el-form-item>
+						<el-button type="primary"
+							:disabled="!passed"
+							native-type="submit"
+							@click="signIn()">Apply</el-button>
+					</el-form-item>
+				</el-form>
+			</el-card>
 
 		</div>
 
@@ -41,17 +46,48 @@ export default {
 	name: 'login',
 	data() {
 		return {
+			passed: false,
 			options: {
 				name: '',
 				password: ''
+			},
+			optionsRule: {
+				name: [
+					{
+						required: true,
+						message: 'Please input Activity name',
+						trigger: 'blur'
+					},
+					{
+						min: 3,
+						max: 5,
+						message: 'Length should be 3 to 5',
+						trigger: 'blur'
+					}
+				],
+				password: [
+					{
+						required: true,
+						message: 'Please input'
+					}
+				]
 			}
 		}
 	},
 	methods: {
-		signIn() {
-			this.$store.dispatch('account/signIn', this.options).then(() => {
-				this.$router.push({ path: '/' });
+		signIn(formName) {
+			this.$refs['options'].validate((valid) => {
+				if (valid) {
+					this.$store.dispatch('account/signIn', this.options).then(() => {
+						this.$router.push({ path: '/' });
+					});
+				} else {
+					return false;
+				}
 			});
+		},
+		commitForm() {
+			return this.passed = true;
 		}
 	}
 }

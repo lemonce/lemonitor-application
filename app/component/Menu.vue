@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div v-for="(group, index) in menu"
+	<!-- <div v-for="(group, index) in menu"
 		:key="index"
 		:class="{expanded: group.expanded}">
 		<h6 @click="toggleGroup(group)"
@@ -19,7 +19,32 @@
 				<a class="menu-group-item">{{$t(item.label)}}</a>
 			</router-link>
 		</ul>
-	</div>
+	</div> -->
+
+	<el-row class="tac">
+		<el-menu
+			class="el-menu-vertical-demo"
+			@click="toggleGroup(group)">
+			<el-submenu v-for="(group, index) in menu"
+				:key="index"
+				:index="toString(index)">
+				<template slot="title">
+					<span>{{$t(group.name)}}</span>
+				</template>
+				<router-link
+					v-for="(item, index) in  group.itemList"
+					:key="index"
+					:index="toString(index)"
+					tag="li"
+					role="menuitem"
+					class="el-menu-item"
+					:to="item.path"
+					:title="$t(item.label)">
+					{{$t(item.label)}}
+				</router-link>
+			</el-submenu>
+		</el-menu>
+	</el-row>
 </div>
 </template>
 
@@ -56,6 +81,8 @@ export default {
 		text-indent: 1rem;
 		line-height: 1rem;
 		position: relative;
+		margin: 0;
+		border-width: 1px 0px;
 		&:hover {
 			background: @group-active;
 		}
@@ -113,5 +140,11 @@ export default {
 		}
 	}
 
+}
+#menu {
+	.el-menu {
+		border: 0;
+		// border-bottom: 1px solid #e6e6e6;
+	}
 }
 </style>

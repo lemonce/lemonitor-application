@@ -13,7 +13,7 @@
 		</div>
 	</div>
 
-	<div class="col-4">
+	<!-- <div class="col-4">
 		<div class="form-group">
 			<label for="timepicker-from">{{$t('selectDate.time')}}</label>
 			<timepicker v-model="options.time"
@@ -27,7 +27,7 @@
 				@click="setTime(presetFrom.offset)"
 				class="text-primary">{{$t(`preset.${presetFrom.label}`)}}</li>
 		</ul>
-	</div>
+	</div> -->
 	
 	<div class="col-12">
 		<div class="alert alert-info mt-3 mb-0">
@@ -57,9 +57,9 @@ export default {
 		}
 	},
 	mounted() {
-		const timepickerFrom = document.querySelector('input.display-time');
+		// const timepickerFrom = document.querySelector('input.display-time');
 		
-		timepickerFrom.setAttribute('id', 'timepicker-from');
+		// timepickerFrom.setAttribute('id', 'timepicker-from');
 	},
 	watch: {
 		timestamp: {

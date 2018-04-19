@@ -45,7 +45,8 @@ const aliasStore = {
 
 const entryStore = {
 	bundle: [
-		'bootstrap/dist/css/bootstrap.min.css',
+		'bootstrap/dist/css/bootstrap-grid.min.css',
+		'element-ui/lib/theme-chalk/index.css',
 		'font-awesome/css/font-awesome.min.css',
 		'bootstrap-slider/dist/css/bootstrap-slider.min.css',
 		'babel-polyfill/dist/polyfill.min.js',

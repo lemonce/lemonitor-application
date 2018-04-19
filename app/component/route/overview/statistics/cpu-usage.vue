@@ -13,6 +13,7 @@
 			data: cpuUsage
 		}]"></chart-linear>
 </metric-card>
+
 </template>
 
 <script>

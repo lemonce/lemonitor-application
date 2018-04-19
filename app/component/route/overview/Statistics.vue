@@ -18,9 +18,9 @@
 		</div>
 	</div>
 
-	<cpu-usage></cpu-usage>
+	<cpu-usage style="margin: 1.5rem 0"></cpu-usage>
 
-	<memory-usage></memory-usage>
+	<memory-usage style="margin: 1.5rem 0"></memory-usage>
 </div>
 </template>
 

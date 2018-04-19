@@ -1,75 +1,74 @@
 <template>
 <div>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-md"
-		id="global-nav">
-		<a href="#" class="navbar-brand">
+	<el-menu mode="horizontal"
+		class="clearfix">
+		<el-menu-item index="1">
 			<logo></logo>
-		</a>
-		<button class="navbar-toggler"
-			@click="toggleNavMenu()"
-			type="button">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+		</el-menu-item>
 
-		<div class="navbar-collapse"
-			:class="{'collapse': isNavHide}">
+		<el-submenu index="4" style="float: right;">
+			<template slot="title"><i class="fa fa-user"></i></template>
+			<el-menu-item index="4-1">Signed in as @User</el-menu-item>
+			<el-menu-item index="4-2" divided>Your profile</el-menu-item>
+		</el-submenu>
+		<router-link
+			tag="li"
+			role="menuitem"
+			class="el-menu-item"
+			style="float: right"
+			to="/notification"
+			:title="$t('nav.notification')">
+			<i class="fa fa-bell"></i>
+		</router-link>
+		<router-link
+			tag="li"
+			role="menuitem"
+			class="el-menu-item"
+			style="float: right"
+			to="/config"
+			:title="$t('nav.config')">
+			<i class="fa fa-cog"></i>
+		</router-link>
 
-			<ul class="navbar-nav ml-auto"
-				id="time-range-picker">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle"
-						:class="{'illegal-to': isIllegal}"
-						@click="openTimeFrom()"><i
-							class="fa mr-2"
-							:class="timeFromModelIcon"></i>{{formatedFrom}}</a>
-					<time-from v-if="isTimeFromShow"
-						@apply="isTimeFromShow = false"></time-from>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle"
-						:class="{'illegal-to': isIllegal}"
-						@click="openTimeTo()">{{formatedTo}}<i
-							class="fa ml-2"
-							:class="timeToModelIcon"></i></a>
-					<time-to v-if="isTimeToShow"
-						@apply="isTimeToShow = false"></time-to>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link"><i class="fa fa-refresh"
-						:title="$t('nav.refresh')"></i></a>
+		<el-menu-item style="float: right;" index="3">
+			<el-dropdown trigger="click">
+				<span class="el-dropdown-link"
+					@click="openTimeTo()">{{formatedTo}}
+					<i class="fa"
+						:class="timeToModelIcon"></i>
+				</span>
+				<el-dropdown-menu slot="dropdown">
+					<el-dropdown-item>
+						<time-to v-if="isTimeToShow"
+							></time-to>
+					</el-dropdown-item>
+				</el-dropdown-menu>
+			</el-dropdown>
+		</el-menu-item>
+		<el-menu-item style="float: right;" index="2">
+			<el-dropdown trigger="click">
+				<span class="el-dropdown-link"
+					@click="openTimeFrom()">
+					<i class="fa"
+						:class="timeFromModelIcon"></i>{{formatedFrom}}
+				</span>
+				<el-dropdown-menu slot="dropdown">
+					<el-dropdown-item>
+						<time-from v-if="isTimeFromShow"
+							></time-from>
+					</el-dropdown-item>
+				</el-dropdown-menu>
+			</el-dropdown>
+		</el-menu-item>
+		
+	</el-menu>
 
-				</li>
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/notification"
-					:title="$t('nav.notification')">
-					<a class="nav-link"><i class="fa fa-bell"></i></a>
-				</router-link>
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/config"
-					:title="$t('nav.config')">
-					<a class="nav-link"><i class="fa fa-cog"></i></a>
-				</router-link>
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/config"
-					:title="$t('nav.config')">
-					<a class="nav-link"><i class="fa fa-user"></i></a>
-				</router-link>
-			</ul>
-		</div>
-	</nav>
-
-	<div id="workbench" class="w-100">
-		<app-menu class="d-none d-md-block h-100"
+	<div id="workbench">
+		<app-menu class="d-none d-md-block"
 			id="menu">
 		</app-menu>
-		<div id="view" class="h-100">
-			<router-view class="container-fluid pt-3"></router-view>
+		<div id="view">
+			<router-view class="container-fluid"></router-view>
 		</div>
 	</div>
 	
@@ -153,18 +152,21 @@ export default {
 
 #workbench {
 	position: absolute;
-	top: 3.5rem;
+	top: 4.3rem;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	overflow: hidden;
 	z-index: -1;
+	width: 100%;
 
 	#menu {
-		background: @menu-bg;
+		background: #fff;
+		border: 1px solid #e6e6e6;
 		width: @menu;
 		position: absolute;
 		overflow-y: auto;
+		height: 100%;
 	}
 
 	#view {
@@ -174,6 +176,8 @@ export default {
 		bottom: 0;
 		left: @menu;
 		overflow-y: auto;
+		height: 100%;
+		padding-top: 1.5rem;
 	}
 }
 
@@ -183,52 +187,52 @@ export default {
 	}
 }
 
-#time-range-picker {
-	a {
-		cursor: pointer;
-	}
-	.illegal-to {
-		animation: illegal 0.5s linear infinite;
-	}
+// #time-range-picker {
+// 	a {
+// 		cursor: pointer;
+// 	}
+// 	.illegal-to {
+// 		animation: illegal 0.5s linear infinite;
+// 	}
 
-	.dropdown-picker-card {
-		width: 38rem;
-		top: 2.875rem;
-		left: -28rem;
+// 	.dropdown-picker-card {
+// 		width: 38rem;
+// 		top: 2.875rem;
+// 		left: -28rem;
 
-		&::before {
-			content: '';
-			width: 0;
-			height: 0;
-			position: absolute;
-			top: -6px;
-			right: 68px;
-			.arrow-picker-dropdown();
-		}
+// 		&::before {
+// 			content: '';
+// 			width: 0;
+// 			height: 0;
+// 			position: absolute;
+// 			top: -6px;
+// 			right: 68px;
+// 			.arrow-picker-dropdown();
+// 		}
 
-		.dropdown-item {
-			&:active,
-			&:focus {
-				color: #212529;
-				background-color: rgba(0, 0, 0, .03);
-			}
-			&:focus {
-				outline: none;
-			}
-		}
+// 		.dropdown-item {
+// 			&:active,
+// 			&:focus {
+// 				color: #212529;
+// 				background-color: rgba(0, 0, 0, .03);
+// 			}
+// 			&:focus {
+// 				outline: none;
+// 			}
+// 		}
 
-		.card-body {
-			li.text-primary {
-				cursor: pointer;
-			}
-		}
-		.nav-link {
-			color: #007BFF;
+// 		.card-body {
+// 			li.text-primary {
+// 				cursor: pointer;
+// 			}
+// 		}
+// 		.nav-link {
+// 			color: #007BFF;
 
-			&.active {
-				color: #495057;
-			}
-		}
-	}
-}
+// 			&.active {
+// 				color: #495057;
+// 			}
+// 		}
+// 	}
+// }
 </style>

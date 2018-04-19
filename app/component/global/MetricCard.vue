@@ -1,16 +1,16 @@
 <template>
-<div class="bg-light metric">
-	<div class="metric-header text-muted text-center w-100 pt-2">{{title||'Untitled'}}</div>
-	<div class="metric-body h-100">
-		<slot></slot>
+<el-card class="box-card">
+	<div slot="header">
+		<span>{{title}}</span>
 	</div>
-</div>
+	<slot></slot>
+</el-card>
 </template>
 
 <script>
 export default {
 	name: 'metric-card',
-	props: [ 'title' ]
+	props: ['title']
 }
 </script>
 
@@ -18,11 +18,6 @@ export default {
 @import '~app/style/var.less';
 
 .metric {
-	height: 200px;
-	position: relative;
-	border: 1px solid #ccc;
-	margin-bottom: 20px;
-
 	> .metric-header {
 		position: absolute;
 		top: 0;
