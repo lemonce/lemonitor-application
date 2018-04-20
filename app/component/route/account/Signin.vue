@@ -7,6 +7,7 @@
 					<span>Sign in</span>
 				</div>
 				<el-form ref="options"
+					@submit.native.prevent="signIn()"
 					@validate="commitForm()"
 					label-position="top"
 					:model="options"
@@ -27,9 +28,7 @@
 					</div>
 					<el-form-item>
 						<el-button type="primary"
-							:disabled="!passed"
-							native-type="submit"
-							@click="signIn()">Apply</el-button>
+							native-type="submit">Apply</el-button>
 					</el-form-item>
 				</el-form>
 			</el-card>
