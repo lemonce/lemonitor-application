@@ -5,8 +5,6 @@ import './component/global/index';
 
 import Vue from 'vue';
 // import VeeValidate from 'vee-validate';
-import bFormSlider from 'vue-bootstrap-slider';
-import VueTimepicker from 'vue-timepicker-remastered';
 import Element from 'element-ui';
 
 import menu from './menu.js';
@@ -14,8 +12,6 @@ import Data from './plugin/data.js';
 
 Vue.use(Element);
 // Vue.use(VeeValidate);
-Vue.use(bFormSlider);
-Vue.use(VueTimepicker, { name: 'timepicker' });
 Vue.use(Data, {
 	afterUpdate(updated) {
 		updated.catch(() => $app.updateSession())

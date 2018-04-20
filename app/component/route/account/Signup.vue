@@ -1,38 +1,7 @@
 <template>
-<div class="container" style="margin-top: 7rem">
-	<div class="row">
-		<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-			<!-- <div class="card">
-				<div class="card-header text-center">
-					<h4 class="card-title mb-0 py-2">Sign Up</h4>
-				</div>
-				<div class="card-body">
-					<div class="form-group">
-						<label for="username">Username</label>
-						<input type="text"
-							v-model="options.name"
-							class="form-control"
-							id="username">
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password"
-							v-model="options.password"
-							class="form-control"
-							id="password">
-					</div>
-					<div class="form-group">
-						<label for="confirm">Confirm</label>
-						<input type="password"
-							v-model="options.confirm"
-							class="form-control"
-							id="confirm">
-					</div>
-					<button class="btn btn-primary btn-block"
-						@click="signIn()">Register</button>
-				</div>
-			</div> -->
-
+<div style="margin-top: 7rem">
+	<el-row type="flex" justify="center">
+		<el-col :xs="18" :sm="16" :md="12" :lg="8">
 			<el-card class="box-card">
 				<div slot="header">
 					<span>Sign up</span>
@@ -57,9 +26,8 @@
 					</el-form-item>
 				</el-form>
 			</el-card>
-		</div>
-
-	</div>
+		</el-col>
+	</el-row>
 </div>
 
 </template>

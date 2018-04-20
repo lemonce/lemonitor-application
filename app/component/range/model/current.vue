@@ -20,30 +20,30 @@
 </div>
 </template>
 
-<script>
-import dateFormat from 'dateformat';
+// <script>
+// import dateFormat from 'dateformat';
 
-export default {
-	name: 'range-to-current',
-	props: {
-		value: {
-			type: Number
-		}
-	},
-	mounted() {
-		const currentDateElement = this.$el.querySelector('#current-date');
-		const currentTimeElement = this.$el.querySelector('#current-time');
+// export default {
+// 	name: 'range-to-current',
+// 	props: {
+// 		value: {
+// 			type: Number
+// 		}
+// 	},
+// 	mounted() {
+// 		const currentDateElement = this.$el.querySelector('#current-date');
+// 		const currentTimeElement = this.$el.querySelector('#current-time');
 
-		this.$emit('input', null);
-		this.timer = setInterval(function clock() {
-			currentDateElement.innerHTML = dateFormat(new Date(), 'mm/dd/yyyy');
-			currentTimeElement.innerHTML = dateFormat(new Date(), 'HH:MM:ss');
+// 		this.$emit('input', null);
+// 		this.timer = setInterval(function clock() {
+// 			currentDateElement.innerHTML = dateFormat(new Date(), 'mm/dd/yyyy');
+// 			currentTimeElement.innerHTML = dateFormat(new Date(), 'HH:MM:ss');
 		
-			return clock;
-		}(), 500);
-	},
-	destroyed() {
-		clearInterval(this.timer);
-	}
-}
-</script>
+// 			return clock;
+// 		}(), 500);
+// 	},
+// 	destroyed() {
+// 		clearInterval(this.timer);
+// 	}
+// }
+// </script>

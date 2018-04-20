@@ -14,11 +14,11 @@
 	</div>
 
 	<div class="col-4">
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label for="timepicker-to">{{$t('selectDate.time')}}</label>
 			<timepicker v-model="options.time"
 				hide-clear-button></timepicker>
-		</div>
+		</div> -->
 
 		<label>{{$t('range.quick')}}</label>
 		<ul class="list-group list-unstyled">
@@ -38,78 +38,78 @@
 
 </template>
 
-<script>
-import dateFormat from 'dateformat';
-import {
-	MIN,
-	HOUR,
-	mixin,
-	computeTimeModelFromTimestamp,
-	computeDate
-} from './time-control';
+// <script>
+// import dateFormat from 'dateformat';
+// import {
+// 	MIN,
+// 	HOUR,
+// 	mixin,
+// 	computeTimeModelFromTimestamp,
+// 	computeDate
+// } from './time-control';
 
-export default {
-	name: 'range-to-to',
-	props: {
-		value: {
-			type: Number
-		}
-	},
-	mounted() {
-		const timepickerTo = document.querySelector('input.display-time');
+// export default {
+// 	name: 'range-to-to',
+// 	props: {
+// 		value: {
+// 			type: Number
+// 		}
+// 	},
+// 	mounted() {
+// 		const timepickerTo = document.querySelector('input.display-time');
 		
-		timepickerTo.setAttribute('id', 'timepicker-to');
-	},
-	watch: {
-		timestamp: {
-			handler(newValue) {
-				this.$emit('input', newValue);
-			},
-			immediate: true
-		}
-	},
-	computed:{
-		timestamp() {
-			return this.options.date.getTime() +
-				this.options.time.HH * HOUR +
-				this.options.time.mm * MIN;
-		},
-		selectedDate() {
-			return dateFormat(this.options.date, 'mm/dd/yyyy');
-		},
-		selectedTime() {
-			return dateFormat(this.timestamp, 'HH:MM');
-		}
-	},
-	data() {
-		return {
-			options: this.getOptions(),
-			disabled: {
-				from: new Date(),
-				to: computeDate(new Date(this.$store.getters['range/from']))
-			},
-		};
-	},
-	methods: {
-		getOptions() {
-			const date = new Date(this.$store.getters['range/to']);
+// 		timepickerTo.setAttribute('id', 'timepicker-to');
+// 	},
+// 	watch: {
+// 		timestamp: {
+// 			handler(newValue) {
+// 				this.$emit('input', newValue);
+// 			},
+// 			immediate: true
+// 		}
+// 	},
+// 	computed:{
+// 		timestamp() {
+// 			return this.options.date.getTime() +
+// 				this.options.time.HH * HOUR +
+// 				this.options.time.mm * MIN;
+// 		},
+// 		selectedDate() {
+// 			return dateFormat(this.options.date, 'mm/dd/yyyy');
+// 		},
+// 		selectedTime() {
+// 			return dateFormat(this.timestamp, 'HH:MM');
+// 		}
+// 	},
+// 	data() {
+// 		return {
+// 			options: this.getOptions(),
+// 			disabled: {
+// 				from: new Date(),
+// 				to: computeDate(new Date(this.$store.getters['range/from']))
+// 			},
+// 		};
+// 	},
+// 	methods: {
+// 		getOptions() {
+// 			const date = new Date(this.$store.getters['range/to']);
 			
-			return {
-				date: computeDate(date),
-				time: computeTimeModelFromTimestamp(date)
-			}
-		},
-		avalibleTo(presetList) {
-			const from = this.$store.getters['range/from'];
-			const to = this.$store.getters['range/to'];
+// 			return {
+// 				date: computeDate(date),
+// 				time: computeTimeModelFromTimestamp(date)
+// 			}
+// 		},
+// 		avalibleTo(presetList) {
+// 			const from = this.$store.getters['range/from'];
+// 			const to = this.$store.getters['range/to'];
 			
-			return presetList.filter(function (presetTo) {
-				const offset = presetTo.offset * 1000;
+// 			return presetList.filter(function (presetTo) {
+// 				const offset = presetTo.offset * 1000;
 				
-				return to - offset > from;
-			});
-		}
-	},
-	mixins:[mixin]
-}
-</script>
+// 				return to - offset > from;
+// 			});
+// 		}
+// 	},
+// 	mixins:[mixin]
+// }
+// </script>

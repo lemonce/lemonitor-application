@@ -4,12 +4,12 @@
 			class="pull-right">{{$t('label.version')}}&nbsp;:&nbsp;{{product.version}}</small></h3>
 		<hr>
 
-		<div class="row">
-			<div class="col-6">
+		<el-row>
+			<el-col :span="12">
 				<h4>{{$t('label.authors')}}</h4>
 				<p>{{product.author}}</p>
-			</div>
-		</div>
+			</el-col>
+		</el-row>
 
 		<h4>{{$t('label.description')}}</h4>
 		<p>{{product.description}}</p>
@@ -18,9 +18,9 @@
 		<pre id="app-license">{{product.license}}</pre>
 
 		<h4>{{$t('about.server.hardware')}}</h4>
-		<div class="row">
-			<div class="col-md-8">
-				<table class="table table-hover table-bordered">
+		<el-row>
+			<el-col :md="16">
+				<!-- <table class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>{{$t('label.item')}}</th>
@@ -34,55 +34,64 @@
 							<td>{{value}}</td>
 						</tr>
 					</tbody>
-				</table>
-			</div>
-		</div>
+				</table> -->
+				<el-table
+					width="100%">
+					<el-table-column
+						prop="item"
+						:label="$t('label.item')"
+						width="">
+					</el-table-column>
+					<el-table-column
+						prop="value"
+						:label="$t('label.value')"
+						width="">
+					</el-table-column>
+				</el-table>
+				
+			</el-col>
+		</el-row>
 
 		<h4>{{$t('about.server.software')}}</h4>
-		<div class="row">
-			<div class="col-8">
-				<table class="table table-hover table-bordered">
-					<thead>
-						<tr>
-							<th>{{$t('label.product')}}</th>
-							<th>{{$t('label.version')}}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(version, item) in env.versions"
-							:key="item">
-							<td>{{item}}</td>
-							<td>{{version}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		<el-row>
+			<el-col :span="16">
+				<el-table width="100%">
+					<el-table-column
+						prop="item"
+						:label="$t('label.product')">
+					</el-table-column>
+					<el-table-column
+						prop="version"
+						:label="$t('label.version')">
+					</el-table-column>
+				</el-table>
+
+			</el-col>
+		</el-row>
 
 		<h4>{{$t('about.extensions.installed')}}</h4>
-		<div class="table-responsive">
-			<table class="table table-hover table-bordered" id="version-list">
-				<thead>
-					<tr>
-						<th>{{$t('label.name')}}</th>
-						<th>{{$t('label.version')}}</th>
-						<th>{{$t('label.license')}}</th>
-						<th>{{$t('label.authors')}}</th>
-						<th>{{$t('label.description')}}</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="(extension, index) in extensionList"
-						:key="index">
-						<td>{{extension.name}}</td>
-						<td>{{extension.version}}</td>
-						<td>{{extension.license}}</td>
-						<td>{{extension.author}}</td>
-						<td>{{extension.description}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<el-table width="100%">
+			<el-table-column
+				prop="name"
+				:label="$t('label.name')">
+			</el-table-column>
+			<el-table-column
+				prop="version"
+				:label="$t('label.version')">
+			</el-table-column>
+			<el-table-column
+				prop="license"
+				:label="$t('label.license')">
+			</el-table-column>
+			<el-table-column
+				prop="author"
+				:label="$t('label.authors')">
+			</el-table-column>
+			<el-table-column
+				prop="descrition"
+				:label="$t('label.descrition')">
+			</el-table-column>
+		</el-table>
 	</div>
 </template>
 
@@ -94,8 +103,8 @@ export default {
 			extensionList: {},
 			env: this.$Data({
 				start: 0,
-				versions: {},
-				os: {}
+				versions: [],
+				os: [] //[TODO] type check failed for prop "data".Expected Array, got Object
 			}, (http) => {
 				return http.get('api/about/environment').then(res => {
 					const { appStartTime, versions, os } = res.data.data;
