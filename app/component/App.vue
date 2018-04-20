@@ -38,12 +38,8 @@ export default {
 				const requireAccount =
 					to.matched.some(record => record.meta.requireAccount);
 
-				if (accountId) {
-					if (!requireAccount) {
-						return next('/');
-					}
-				} else {
-					if (requireAccount) {
+				if (requireAccount) {
+					if (!accountId) {
 						return next(signInPath);
 					}
 				}

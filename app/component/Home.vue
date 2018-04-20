@@ -9,7 +9,8 @@
 		<el-submenu index="4" style="float: right;">
 			<template slot="title"><i class="fa fa-user"></i></template>
 			<el-menu-item index="4-1">Signed in as @User</el-menu-item>
-			<el-menu-item index="4-2" divided>Your profile</el-menu-item>
+			<el-menu-item index="4-2" @click="signout()">sign out</el-menu-item>
+			<el-menu-item index="4-3" divided>Your profile</el-menu-item>
 		</el-submenu>
 		<router-link
 			tag="li"
@@ -76,6 +77,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import Logo from './Logo.vue';
 import AppMenu from './Menu.vue';
 import TimeFrom from './range/From.vue';
@@ -90,7 +93,8 @@ export default {
 		return {
 			isNavHide: true,
 			isTimeFromShow: false,
-			isTimeToShow: false
+			isTimeToShow: false,
+			dialogVisible: false
 		};
 	},
 	methods: {
@@ -104,6 +108,11 @@ export default {
 		openTimeTo() {
 			this.isTimeToShow = !this.isTimeToShow;
 			this.isTimeFromShow = false;
+		},
+		signout() {
+			this.$store.dispatch('account/signOut').then(() => {
+				this.$router.push({ path: '/account/signin' });
+			});
 		}
 	},
 	computed: {
