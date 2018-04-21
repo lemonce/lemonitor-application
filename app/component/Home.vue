@@ -1,69 +1,88 @@
 <template>
 <div>
-	<el-container>
-		<el-header>
-			<el-menu mode="horizontal"
-				class="clearfix">
-				<logo class="el-menu-item"></logo>
+	<el-menu mode="horizontal"
+		class="clearfix"
+		style="user-select: none;">
+		<logo class="el-menu-item"></logo>
 
-				<el-submenu index="4" style="float: right;">
-					<template slot="title"><i class="fa fa-user"></i></template>
-					<el-menu-item index="4-1">Signed in as @User</el-menu-item>
-					<el-menu-item index="4-2" @click="signout()">sign out</el-menu-item>
-					<el-menu-item index="4-3" divided>Your profile</el-menu-item>
-					<router-link
-						tag="li"
-						role="menuitem"
-						class="el-menu-item"
-						to="/config"
-						:title="$t('nav.config')">Settings
-					</router-link>
-				</el-submenu>
-				<router-link
-					tag="li"
-					role="menuitem"
-					class="el-menu-item"
-					style="float: right"
-					to="/notification"
-					:title="$t('nav.notification')">
-					<i class="fa fa-bell"></i>
-				</router-link>
+		<el-submenu index="4"
+			class="hidden-sm-only"
+			style="float: right;">
+			<template slot="title"><i class="fa fa-user"></i></template>
+			<el-menu-item index="4-1">Signed in as @User</el-menu-item>
+			<el-menu-item index="4-2" @click="signout()">sign out</el-menu-item>
+			<el-menu-item index="4-3" divided>Your profile</el-menu-item>
+			<router-link
+				tag="li"
+				role="menuitem"
+				class="el-menu-item"
+				to="/config"
+				:title="$t('nav.config')">Settings
+			</router-link>
+			<!-- <div class="el-menu-item hidden-sm-and-up">
+				<el-date-picker
+					ref="picker"
+					type="datetimerange"
+					range-separator="-"
+					start-placeholde="Start date"
+					end-placeholde="End date"
+					:clearable="false"
+					:editable="false"
+					:readonly="isToNow"
+					:picker-options="{
+						disabledDate
+					}"
+					@change="setDataUpdaterOptions()"
+					v-model="datetimeRange"
+					align="right">
+				</el-date-picker>
+				<el-checkbox border :checked="!isToNow"
+					@change="toggleToNow()">To Now</el-checkbox>
+			</div> -->
+		</el-submenu>
+		<router-link
+			tag="li"
+			role="menuitem"
+			class="el-menu-item hidden-sm-only"
+			style="float: right;"
+			to="/notification"
+			:title="$t('nav.notification')">
+			<i class="fa fa-bell"></i>
+		</router-link>
 
-				<div class="el-menu-item" style="float: right;">
-					<el-date-picker
-						ref="picker"
-						type="datetimerange"
-						range-separator="-"
-						start-placeholde="Start date"
-						end-placeholde="End date"
-						:clearable="false"
-						:editable="false"
-						:readonly="isToNow"
-						:picker-options="{
-							disabledDate
-						}"
-						@change="setDataUpdaterOptions()"
-						v-model="datetimeRange"
-						align="right">
-					</el-date-picker>
-					<el-checkbox border :checked="!isToNow"
-						@change="toggleToNow()">To Now</el-checkbox>
-				</div>
-				
-			</el-menu>
-		</el-header>
+		<div class="el-menu-item hidden-xs-only"
+			style="float: right;">
+			<el-date-picker
+				ref="picker"
+				type="datetimerange"
+				range-separator="-"
+				start-placeholde="Start date"
+				end-placeholde="End date"
+				:clearable="false"
+				:editable="false"
+				:readonly="isToNow"
+				:picker-options="{
+					disabledDate
+				}"
+				@change="setDataUpdaterOptions()"
+				v-model="datetimeRange"
+				align="right">
+			</el-date-picker>
+			<el-checkbox border :checked="!isToNow"
+				@change="toggleToNow()">To Now</el-checkbox>
+		</div>
 
-		<el-container>
-			<el-aside>
-				<app-menu></app-menu>
-			</el-aside>
+	</el-menu>
+
+	<div id="workbench">
+		<app-menu id="menu"
+			class="hidden-sm-and-down"></app-menu>
+		<el-container id="view">
 			<el-main>
 				<router-view></router-view>
 			</el-main>
 		</el-container>
-		
-	</el-container>
-
+	</div>
 </div>
 </template>
 
@@ -174,3 +193,41 @@ export default {
 	},
 }
 </script>
+
+<style lang="less">
+@import '~app/style/var.less';
+
+#workbench {
+	position: absolute;
+	top: 61px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+
+	#menu {
+		border-right: 1px solid #e6e6e6;
+		width: @menu;
+		position: absolute;
+		overflow-y: auto;
+		height: 100%;
+	}
+
+	#view {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: @menu;
+		overflow-y: auto;
+		height: 100%;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	#workbench #view {
+		left: 0;
+	}
+}
+</style>

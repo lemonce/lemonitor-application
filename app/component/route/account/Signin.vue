@@ -1,7 +1,7 @@
 <template>
 <div style="margin-top: 7rem">
 	<el-row type="flex" justify="center">
-		<el-col :xs="18" :sm="16" :md="12" :lg="8">
+		<el-col :xs="18" :sm="16" :md="12" :lg="8" :xl="6">
 			<el-card class="box-card">
 				<div slot="header">
 					<span>Sign in</span>

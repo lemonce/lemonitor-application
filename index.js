@@ -45,6 +45,7 @@ const aliasStore = {
 const entryStore = {
 	bundle: [
 		'element-ui/lib/theme-chalk/index.css',
+		'element-ui/lib/theme-chalk/display.css',
 		'font-awesome/css/font-awesome.min.css',
 		'babel-polyfill/dist/polyfill.min.js',
 		path.resolve(__dirname, './app')
