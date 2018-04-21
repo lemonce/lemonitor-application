@@ -155,8 +155,6 @@ export default {
 			this.setDataUpdaterOptions();
 		},
 		setDataUpdaterOptions() {
-			console.log(11111)
-
 			this.dataUpdaterTimer = setTimeout(() => {
 				clearTimeout(this.dataUpdaterTimer);
 				
