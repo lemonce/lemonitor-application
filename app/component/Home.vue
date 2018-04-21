@@ -6,7 +6,6 @@
 		<logo class="el-menu-item"></logo>
 
 		<el-submenu index="4"
-			class="hidden-sm-only"
 			style="float: right;">
 			<template slot="title"><i class="fa fa-user"></i></template>
 			<el-menu-item index="4-1">Signed in as @User</el-menu-item>
@@ -19,38 +18,18 @@
 				to="/config"
 				:title="$t('nav.config')">Settings
 			</router-link>
-			<!-- <div class="el-menu-item hidden-sm-and-up">
-				<el-date-picker
-					ref="picker"
-					type="datetimerange"
-					range-separator="-"
-					start-placeholde="Start date"
-					end-placeholde="End date"
-					:clearable="false"
-					:editable="false"
-					:readonly="isToNow"
-					:picker-options="{
-						disabledDate
-					}"
-					@change="setDataUpdaterOptions()"
-					v-model="datetimeRange"
-					align="right">
-				</el-date-picker>
-				<el-checkbox border :checked="!isToNow"
-					@change="toggleToNow()">To Now</el-checkbox>
-			</div> -->
 		</el-submenu>
 		<router-link
 			tag="li"
 			role="menuitem"
-			class="el-menu-item hidden-sm-only"
+			class="el-menu-item"
 			style="float: right;"
 			to="/notification"
 			:title="$t('nav.notification')">
 			<i class="fa fa-bell"></i>
 		</router-link>
 
-		<div class="el-menu-item hidden-xs-only"
+		<div class="el-menu-item"
 			style="float: right;">
 			<el-date-picker
 				ref="picker"
@@ -68,20 +47,19 @@
 				v-model="datetimeRange"
 				align="right">
 			</el-date-picker>
-			<el-checkbox border :checked="!isToNow"
+			<el-checkbox border
+				class="mb-0"
+				:checked="!isToNow"
 				@change="toggleToNow()">To Now</el-checkbox>
 		</div>
 
 	</el-menu>
 
 	<div id="workbench">
-		<app-menu id="menu"
-			class="hidden-sm-and-down"></app-menu>
-		<el-container id="view">
-			<el-main>
-				<router-view></router-view>
-			</el-main>
-		</el-container>
+		<app-menu id="menu" class="d-none d-md-block"></app-menu>
+		<div id="view">
+			<router-view class="container-fluid pt-3"></router-view>
+		</div>
 	</div>
 </div>
 </template>
@@ -225,7 +203,7 @@ export default {
 	}
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
 	#workbench #view {
 		left: 0;
 	}

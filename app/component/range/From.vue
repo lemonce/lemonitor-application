@@ -15,9 +15,9 @@
 			</span>
 		</el-tab-pane>
 	</el-tabs>
-	<el-row>
+	<div class="row">
 		<el-button type="primary" class="pull-right" @click="apply()">{{$t('range.apply')}}</el-button>
-	</el-row>
+	</div>
 
 </div>
 </template>

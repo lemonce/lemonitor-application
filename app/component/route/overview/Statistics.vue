@@ -1,23 +1,23 @@
 <template>
 <div id="statistics">
-	<el-row :gutter="20">
-		<el-col :md="12" :lg="6">
-			<running-timming style="margin: .5rem 0"></running-timming>
-		</el-col>
-		<el-col :md="12" :lg="6">
-			<active-session style="margin: .5rem 0"></active-session>
-		</el-col>
-		<el-col :md="12" :lg="6">
-			<cpu-usage-last style="margin: .5rem 0"></cpu-usage-last>
-		</el-col>
-		<el-col :md="12" :lg="6">
-			<memory-usage-last style="margin: .5rem 0"></memory-usage-last>
-		</el-col>
-	</el-row>
+	<div class="row">
+		<div class="col-md-6 col-lg-3">
+			<running-timming class="my-1"></running-timming>
+		</div>
+		<div class="col-md-6 col-lg-3">
+			<active-session class="my-1"></active-session>
+		</div>
+		<div class="col-md-6 col-lg-3">
+			<cpu-usage-last class="my-1"></cpu-usage-last>
+		</div>
+		<div class="col-md-6 col-lg-3">
+			<memory-usage-last class="my-1"></memory-usage-last>
+		</div>
+	</div>
 
-	<cpu-usage style="margin: 1.5rem 0"></cpu-usage>
+	<cpu-usage class="my-3"></cpu-usage>
 
-	<memory-usage style="margin: 1.5rem 0"></memory-usage>
+	<memory-usage class="my-3"></memory-usage>
 </div>
 </template>
 

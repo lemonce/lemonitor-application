@@ -2,8 +2,8 @@
 <div>
 	<h3>{{$t('config.general')}}</h3>
 	<hr>
-	<el-row>
-		<el-col :span="12">
+	<div class="row">
+		<div class="col-6">
 			<el-form label-position="top">
 				<el-form-item :label="$t('general.languages')">
 					<el-select v-model="$store.state.lang">
@@ -14,14 +14,14 @@
 					</el-select>
 				</el-form-item>
 			</el-form>
-		</el-col>
-	</el-row>
+		</div>
+	</div>
 
 	<h3>{{$t('config.flag')}}</h3>
 	<hr>
 
-	<el-row>
-		<el-col :span="12">
+	<div class="row">
+		<div class="col-6">
 			<h4>{{$t('flag.client')}}</h4>
 			<el-form label-position="top">
 				<el-form-item :label="$t('flagClient.expires')">
@@ -32,27 +32,25 @@
 						v-model="flag.clientSafety"></el-checkbox>
 				</el-form-item>
 			</el-form>
-		</el-col>
-	</el-row>
+		</div>
+	</div>
 
-	<el-row>
-		<el-col :span="12">
+	<div class="row">
+		<div class="col-6">
 			<h4>{{$t('flag.user')}}</h4>
 			<el-form label-position="top">
 				<el-form-item :label="$t('flagUser.cookieKey')">
 					<el-input v-model="flag.userKey"></el-input>
 				</el-form-item>
 			</el-form>
+			<el-button
+				type="primary"
+				native-type="submit"
+				@click="updateFlagConfig(flag.clientExpires, flag.clientSafety, flag.userKey)">{{$t('flag.update')}}
+			</el-button>
+		</div>
+	</div>
 
-
-		</el-col>
-	</el-row>
-
-	<el-button
-		type="primary"
-		native-type="submit"
-		@click="updateFlagConfig(flag.clientExpires, flag.clientSafety, flag.userKey)">{{$t('flag.update')}}
-		</el-button>
 </div>
 </template>
 

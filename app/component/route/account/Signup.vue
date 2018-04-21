@@ -1,7 +1,7 @@
 <template>
-<div style="margin-top: 7rem">
-	<el-row type="flex" justify="center">
-		<el-col :xs="18" :sm="16" :md="12" :lg="8" :xl="6">
+<div class="container" style="margin-top: 7rem">
+	<div class="row">
+		<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 			<el-card class="box-card">
 				<div slot="header">
 					<span>Sign up</span>
@@ -26,8 +26,8 @@
 					</el-form-item>
 				</el-form>
 			</el-card>
-		</el-col>
-	</el-row>
+		</div>
+	</div>
 </div>
 
 </template>

@@ -4,12 +4,12 @@
 			class="pull-right">{{$t('label.version')}}&nbsp;:&nbsp;{{product.version}}</small></h3>
 		<hr>
 
-		<el-row>
-			<el-col :span="12">
+		<div class="row">
+			<div class="col-6">
 				<h4>{{$t('label.authors')}}</h4>
 				<p>{{product.author}}</p>
-			</el-col>
-		</el-row>
+			</div>
+		</div>
 
 		<h4>{{$t('label.description')}}</h4>
 		<p>{{product.description}}</p>
@@ -18,8 +18,8 @@
 		<pre id="app-license">{{product.license}}</pre>
 
 		<h4>{{$t('about.server.hardware')}}</h4>
-		<el-row>
-			<el-col :md="16">
+		<div class="row">
+			<div class="col-md-8">
 				<!-- <table class="table table-hover table-bordered">
 					<thead>
 						<tr>
@@ -49,12 +49,12 @@
 					</el-table-column>
 				</el-table>
 				
-			</el-col>
-		</el-row>
+			</div>
+		</div>
 
 		<h4>{{$t('about.server.software')}}</h4>
-		<el-row>
-			<el-col :span="16">
+		<div class="row">
+			<div class="col-8">
 				<el-table width="100%">
 					<el-table-column
 						prop="item"
@@ -66,8 +66,8 @@
 					</el-table-column>
 				</el-table>
 
-			</el-col>
-		</el-row>
+			</div>
+		</div>
 
 		<h4>{{$t('about.extensions.installed')}}</h4>
 		<el-table width="100%">
@@ -103,8 +103,8 @@ export default {
 			extensionList: {},
 			env: this.$Data({
 				start: 0,
-				versions: [],
-				os: [] //[TODO] type check failed for prop "data".Expected Array, got Object
+				versions: {},
+				os: {} //[TODO] type check failed for prop "data".Expected Array, got Object
 			}, (http) => {
 				return http.get('api/about/environment').then(res => {
 					const { appStartTime, versions, os } = res.data.data;
