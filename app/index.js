@@ -4,14 +4,12 @@ import './style/global.less';
 import './component/global/index';
 
 import Vue from 'vue';
-// import VeeValidate from 'vee-validate';
 import Element from 'element-ui';
 
 import menu from './menu.js';
 import Data from './plugin/data.js';
 
 Vue.use(Element);
-// Vue.use(VeeValidate);
 Vue.use(Data, {
 	afterUpdate(updated) {
 		updated.catch(() => $app.updateSession())

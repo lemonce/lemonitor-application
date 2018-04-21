@@ -37,7 +37,6 @@ const aliasStore = {
 	app: path.resolve(__dirname, './app'),
 	axios: 'axios/dist/axios.min.js',
 	vue: 'vue/dist/vue.runtime.esm.js',
-	'vee-validate': 'vee-validate/dist/vee-validate.minimal.min.js',
 	'vue-i18n': 'vue-i18n/dist/vue-i18n.min.js',
 	'vue-router': 'vue-router/dist/vue-router.min.js',
 	vuex: 'vuex/dist/vuex.min.js'

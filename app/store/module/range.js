@@ -71,11 +71,11 @@ export default {
 		},
 		setFromMoment(state, timestamp) {
 			state.from.type = 'moment';
-			state.from.value = timestamp;
+			state.from.value = timestamp - 0;
 		},
 		setToMoment(state, timestamp) {
 			state.to.type = 'moment';
-			state.to.value = timestamp;
+			state.to.value = timestamp - 0;
 
 			if (state.from.type === 'duration') {
 				state.from.type = 'moment';

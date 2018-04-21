@@ -33,16 +33,21 @@
 					<el-date-picker
 						ref="picker"
 						type="datetimerange"
-						range-separator="To"
+						range-separator="-"
 						start-placeholde="Start date"
 						end-placeholde="End date"
-						:unlink-panels="true"
-						:disabled="isTimeNowMode"
-						v-model="timeRangeValue"
+						:clearable="false"
+						:editable="false"
+						:readonly="isToNow"
+						:picker-options="{
+							disabledDate
+						}"
+						@change="setDataUpdaterOptions()"
+						v-model="datetimeRange"
 						align="right">
 					</el-date-picker>
-					<el-checkbox border v-model="isTimeNowMode"
-						@change="toTimeRangeMode()">To now</el-checkbox>
+					<el-checkbox border :checked="!isToNow"
+						@change="toggleToNow()">To Now</el-checkbox>
 				</div>
 				
 			</el-menu>
@@ -63,47 +68,108 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 import Logo from './Logo.vue';
 import AppMenu from './Menu.vue';
-// import { setInterval, clearInterval } from 'timers';
+
+const RANGE_ENSURE_INTERVAL = 2000;
+const DAY = 24 * 3600 * 1000;
+
+function getLastDay() {
+	return new Date(Date.now() - DAY);
+}
 
 export default {
 	name: 'app',
 	components: { Logo, AppMenu },
 	data() {
 		return {
-			isTimeFromShow: false,
-			isTimeToShow: false,
-			timeRangeValue: [new Date(), new Date()],
-			isTimeNowMode: true
+			rangeToUpdater: null,
+			dataUpdaterTimer: null,
+			datetimeRange: [getLastDay(), new Date()]
 		};
 	},
+	computed: {
+		isToNow() {
+			return Boolean(this.rangeToUpdater);
+		}
+	},
 	mounted() {
-		// this.toTimeNowMode();
+		this.setToNow();
+	},
+	destroyed() {
+		clearInterval(this.rangeToUpdater);
+	},
+	watch: {
+		datetimeRange([from, to]) {
+			if (this.isToNow) {
+				return;
+			}
+
+			this.$store.dispatch('range/setFrom', {
+				type: 'moment',
+				value: from.getTime()
+			});
+
+			this.$store.dispatch('range/setTo', {
+				type: 'moment',
+				value: to.getTime()
+			});
+		}
 	},
 	methods: {
-		toTimeNowMode() {
-			const refreshTime = setInterval(() => {
-				this.$refs.picker.$emit('input', [
-					this.timeRangeValue[0], new Date()
-				]);
-			}, 500);
-
-			return refreshTime;
-		},
-		openTimeTo() {
-			this.isTimeToShow = !this.isTimeToShow;
-			this.isTimeFromShow = false;
+		disabledDate(date) {
+			if (date > new Date) {
+				return true;
+			}
 		},
 		signout() {
 			this.$store.dispatch('account/signOut').then(() => {
 				this.$router.push({ path: '/account/signin' });
 			});
 		},
-		toTimeRangeMode() {
-			clearInterval(refreshTime)
+		setToNow() {
+			this.rangeToUpdater = setInterval(() => {
+				this.$refs.picker.$emit('input', [
+					this.datetimeRange[0],
+					new Date()
+				]);
+			}, 500);
+
+			this.$store.dispatch('range/setTo', {
+				type: 'now'
+			});
+		},
+		setToDate() {
+			clearInterval(this.rangeToUpdater);
+			this.rangeToUpdater = null;
+			
+			this.$store.dispatch('range/setTo', {
+				type: 'moment',
+				value: this.datetimeRange[1].getTime()
+			});
+		},
+		toggleToNow() {
+			if (this.rangeToUpdater) {
+				this.setToDate();
+			} else {
+				this.setToNow();
+			}
+
+			this.setDataUpdaterOptions();
+		},
+		setDataUpdaterOptions() {
+			console.log(11111)
+
+			this.dataUpdaterTimer = setTimeout(() => {
+				clearTimeout(this.dataUpdaterTimer);
+				
+				this.dataUpdaterTimer = null;
+
+				const isDynamic = this.$store.getters['range/isDynamicDuration'];
+
+				this.$Data.setAutoUpdate(isDynamic);
+				this.$Data.forceUpdateAll();
+			}, RANGE_ENSURE_INTERVAL);
 		}
 	},
 }

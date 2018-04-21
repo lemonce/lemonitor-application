@@ -43,7 +43,6 @@ export default {
 	name: 'login',
 	data() {
 		return {
-			passed: false,
 			options: {
 				name: '',
 				password: ''
@@ -57,8 +56,8 @@ export default {
 					},
 					{
 						min: 3,
-						max: 5,
-						message: 'Length should be 3 to 5',
+						max: 16,
+						message: 'Length should be 3 to 16',
 						trigger: 'blur'
 					}
 				],
