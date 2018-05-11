@@ -1,42 +1,48 @@
 <template>
-<div class="container" style="margin-top: 7rem">
-	<div class="row">
-		<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-			<div class="card">
-				<div class="card-header text-center">
-					<h4 class="card-title mb-0 py-2">Sign Up</h4>
-				</div>
-				<div class="card-body">
-					<div class="form-group">
-						<label for="username">Username</label>
-						<input type="text"
-							v-model="options.name"
-							class="form-control"
-							id="username">
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password"
-							v-model="options.password"
-							class="form-control"
-							id="password">
-					</div>
-					<div class="form-group">
-						<label for="confirm">Confirm</label>
-						<input type="password"
-							v-model="options.confirm"
-							class="form-control"
-							id="confirm">
-					</div>
-					<button class="btn btn-primary btn-block"
-						@click="signIn()">Register</button>
-				</div>
-			</div>
+<b-container style="margin-top: 7rem">
+	<b-row>
+		<b-col sm="8" offset-sm="2" md="6" offset-md="3" lg="4" offset-lg="4">
+			<b-card>
+				<b-card-header
+					header-class="text-center"
+					style="background-color: transparent;">
+					<h4 slot="header">Sign up</h4>
+				</b-card-header>
+				<b-card-body>
+					<b-form-group
+						label="Username"
+						label-for="username">
+						<b-form-input
+							id="username"
+							v-model="options.name">
+						</b-form-input>
+					</b-form-group>
+					<b-form-group
+						label="Password"
+						label-for="password">
+						<b-form-input
+							id="password"
+							v-model="options.password">
+						</b-form-input>
+					</b-form-group>
+					<b-form-group
+						label="Confirm"
+						label-for="confirm">
+						<b-form-input
+							id="confirm"
+							v-model="options.confirm">
+						</b-form-input>
+					</b-form-group>
+					<b-button class="btn-block"
+						variant="primary"
+						@click="signIn()">Register</b-button>
+				</b-card-body>
+			</b-card>
 
-		</div>
+		</b-col>
 
-	</div>
-</div>
+	</b-row>
+</b-container>
 
 </template>
 

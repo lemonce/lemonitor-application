@@ -1,20 +1,16 @@
 <template>
 <div>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-md"
-		id="global-nav">
-		<a href="#" class="navbar-brand">
+	<b-navbar toggleable="md" type="dark" variant="dark">
+
+		<b-navbar-toggle target="global-nav"></b-navbar-toggle>
+
+		<b-navbar-brand href="/">
 			<logo></logo>
-		</a>
-		<button class="navbar-toggler"
-			@click="toggleNavMenu()"
-			type="button">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+		</b-navbar-brand>
 
-		<div class="navbar-collapse"
-			:class="{'collapse': isNavHide}">
+		<b-collapse is-nav id="global-nav">
 
-			<ul class="navbar-nav ml-auto"
+			<b-navbar-nav class="ml-auto"
 				id="time-range-picker">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"
@@ -34,35 +30,32 @@
 					<time-to v-if="isTimeToShow"
 						@apply="isTimeToShow = false"></time-to>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link"><i class="fa fa-refresh"
-						:title="$t('nav.refresh')"></i></a>
-
-				</li>
-				<router-link
-					tag="li"
-					class="nav-item"
+				<b-nav-item>
+					<i class="fa fa-refresh"
+						:title="$t('nav.refresh')"></i>
+				</b-nav-item>
+				<b-nav-item
 					to="/notification"
 					:title="$t('nav.notification')">
-					<a class="nav-link"><i class="fa fa-bell"></i></a>
-				</router-link>
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/config"
-					:title="$t('nav.config')">
-					<a class="nav-link"><i class="fa fa-cog"></i></a>
-				</router-link>
-				<router-link
-					tag="li"
-					class="nav-item"
-					to="/config"
-					:title="$t('nav.config')">
-					<a class="nav-link"><i class="fa fa-user"></i></a>
-				</router-link>
-			</ul>
-		</div>
-	</nav>
+					<i class="fa fa-bell"></i>
+				</b-nav-item>
+				<b-nav-item-dropdown right>
+					<template slot="button-content">
+						<i class="fa fa-user"></i>
+					</template>
+					<b-dropdown-item>Signed in as @User</b-dropdown-item>
+					<b-dropdown-item>Your profile</b-dropdown-item>
+					<b-dropdown-item
+						to="/config"
+						:title="$t('nav.config')">
+						Settings
+					</b-dropdown-item>
+					<b-dropdown-divider></b-dropdown-divider>
+					<b-dropdown-item @click="signout()">Sign out</b-dropdown-item>
+				</b-nav-item-dropdown>
+			</b-navbar-nav>
+		</b-collapse>
+	</b-navbar>
 
 	<div id="workbench" class="w-100">
 		<app-menu class="d-none d-md-block h-100"
@@ -139,6 +132,11 @@ export default {
 				"fa-chevron-right": !this.isCurrent && !this.isIllegal,
 				"fa-remove": !this.isCurrent && this.isIllegal
 			};
+		},
+		signout() {
+			this.$store.dispatch('account/signOut').then(() => {
+				this.$router.push({ path: '/account/signin' });
+			});
 		}
 	},
 }

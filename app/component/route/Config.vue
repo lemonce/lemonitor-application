@@ -2,68 +2,72 @@
 <div>
 	<h3>{{$t('config.general')}}</h3>
 	<hr>
-	<div class="row">
-		<div class="col-6">
-			<div class="form-group">
-				<label for="lang-choice"
-					:title="$t('general.languages')">{{$t('general.languages')}}</label>
-				<select id="lang-choice"
-					class="form-control"
-					@change="chooseLang()"
-					v-model="$store.state.lang">
-					<option v-for="(lang, index) in langPool"
-						:key="index">{{lang.label}}</option>
-				</select>
 
-			</div>
-		</div>
-	</div>
+	<b-row>
+		<b-col cols="12" xl="6">
+			<b-form-group
+				:label="$t('general.languages')"
+				label-for="lang-choice"
+				:title="$t('general.languages')">
+				<b-form-select
+					id="lang-choice"
+					v-model="locale"
+					:options="langPool">
+				</b-form-select>
+			</b-form-group>
+		</b-col>
+	</b-row>
 
-	<h3>{{$t('config.flag')}}</h3>
+	<h3 class="mt-3">{{$t('config.flag')}}</h3>
 	<hr>
-	<div class="row">
-		<div class="col-6">
+
+	<b-row>
+		<b-col cols="12" xl="6">
 			<h4>{{$t('flag.client')}}</h4>
-			<div class="form-group">
-				<label for="client-expires"
-					:title="$t('flagClient.expires')">{{$t('flagClient.expires')}}</label>
-				<input id="client-expires"
-					type="text"
-					class="form-control"
+
+			<b-form-group
+				:label="$t('flagClient.expires')"
+				label-for="client-expires"
+				:title="$t('flagClient.expires')">
+				<b-form-input
+					id="client-expires"
 					v-model="flag.clientExpires">
-			</div>
-			<div class="form-check">
-				<input type="checkbox"
-					class="form-check-input"
+				</b-form-input>
+			</b-form-group>
+			<b-form-group
+				label-for="client-safety"
+				:title="$t('flagClient.httpOnly')">
+				<b-form-checkbox
 					id="client-safety"
 					v-model="flag.clientSafety">
-				<label for="client-safety"
-					class="form-check-label">{{$t('flagClient.httpOnly')}}</label>
-			</div>
+					{{$t('flagClient.httpOnly')}}
+				</b-form-checkbox>
+			</b-form-group>
+		</b-col>
+	</b-row>
 
-
-		</div>
-	</div>
-	<div class="row mt-3">
-		<div class="col-6">
+	<b-row class="mt-3">
+		<b-col cols="12" xl="6">
 			<h4>{{$t('flag.user')}}</h4>
-			<div class="form-group">
-				<label for="user-key"
-					:title="$t('flagUser.cookieKey')">{{$t('flagUser.cookieKey')}}</label>
-				<input id="user-key"
-					type="text"
-					class="form-control"
-					v-model="flag.userKey">
-			</div>
 
-			<button type="submit"
-				class="btn btn-primary float-right"
+			<b-form-group
+				:label="$t('flagUser.cookieKey')"
+				label-for="user-key"
+				:title="$t('flagUser.cookieKey')">
+				<b-form-input
+					id="client-safety"
+					v-model="flag.userKey">
+				</b-form-input>
+			</b-form-group>
+
+			<b-button type="submit"
+				class="float-right"
+				variant="primary"
 				@click="updateFlagConfig(flag.clientExpires, flag.clientSafety, flag.userKey)">
 				{{$t('flag.update')}}
-			</button>
-		</div>
-
-	</div>
+			</b-button>
+		</b-col>
+	</b-row>
 </div>
 </template>
 
@@ -72,15 +76,15 @@ export default {
 	name: 'config',
 	data() {
 		return {
-			locale: 'en',
+			locale: this.$store.state.lang,
 			langPool: [
 				{
-					label: 'English',
-					locale: 'en'
+					text: 'English',
+					value: 'en'
 				},
 				{
-					label: '中文',
-					locale: 'zh'
+					text: '中文',
+					value: 'zh'
 				}
 			],
 			flag: {
@@ -90,17 +94,11 @@ export default {
 			}
 		}
 	},
-	methods: {
-		chooseLang() {
-			const index = document.querySelector('#lang-choice').selectedIndex;
-
-			this.$store.state.lang = this.langPool[index].label;
-			this.locale = this.langPool[index].locale;
-
+	watch: {
+		locale() {
+			this.$store.state.lang = this.locale;
 			this.$i18n.locale = this.locale;
-		},
-		
-	},
-	
+		}
+	}
 }
 </script>

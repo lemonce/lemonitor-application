@@ -18,8 +18,8 @@
 		<pre id="app-license">{{product.license}}</pre>
 
 		<h4>{{$t('about.server.hardware')}}</h4>
-		<div class="row">
-			<div class="col-md-8">
+		<b-row>
+			<b-col cols="8">
 				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
@@ -35,12 +35,12 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
-		</div>
+			</b-col>
+		</b-row>
 
 		<h4>{{$t('about.server.software')}}</h4>
-		<div class="row">
-			<div class="col-8">
+		<b-row>
+			<b-col cols="8">
 				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
@@ -56,8 +56,8 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
-		</div>
+			</b-col>
+		</b-row>
 
 		<h4>{{$t('about.extensions.installed')}}</h4>
 		<div class="table-responsive">

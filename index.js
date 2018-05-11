@@ -46,6 +46,7 @@ const aliasStore = {
 const entryStore = {
 	bundle: [
 		'bootstrap/dist/css/bootstrap.min.css',
+		'bootstrap-vue/dist/bootstrap-vue.css',
 		'font-awesome/css/font-awesome.min.css',
 		'bootstrap-slider/dist/css/bootstrap-slider.min.css',
 		'babel-polyfill/dist/polyfill.min.js',

@@ -1,22 +1,22 @@
 <template>
 <div id="statistics">
-	<div class="row">
-		<div class="col-md-6 col-lg-3">
+	<b-row>
+		<b-col md="6" lg="3">
 			<running-timming></running-timming>
-		</div>
-		<div class="col-md-6 col-lg-3">
+		</b-col>
+		<b-col md="6" lg="3">
 			<active-session></active-session>
 
-		</div>
-		<div class="col-md-6 col-lg-3">
+		</b-col>
+		<b-col md="6" lg="3">
 			<cpu-usage-last></cpu-usage-last>
 
-		</div>
-		<div class="col-md-6 col-lg-3">
+		</b-col>
+		<b-col md="6" lg="3">
 			<memory-usage-last></memory-usage-last>
 			
-		</div>
-	</div>
+		</b-col>
+	</b-row>
 
 	<cpu-usage></cpu-usage>
 

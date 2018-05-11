@@ -1,11 +1,9 @@
 <template>
 <div>
-	<div class="jumbotron">
-		<h1 class="display-4">Hello, welcome!</h1>
-		<p class="lead">...</p>
-		<p class="lead">
-			<a href="#">Learn more</a>
-		</p>
-	</div>
+	<b-jumbotron
+		header="Hello, welcome!"
+		lead="...">
+		<b-btn variant="primary" href="#">More Info</b-btn>
+	</b-jumbotron>
 </div>
 </template>

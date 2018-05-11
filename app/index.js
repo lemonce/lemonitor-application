@@ -7,6 +7,9 @@ import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import bFormSlider from 'vue-bootstrap-slider';
 import VueTimepicker from 'vue-timepicker-remastered';
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue);
 
 import menu from './menu.js';
 import Data from './plugin/data.js';
