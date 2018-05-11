@@ -25,7 +25,7 @@ export default {
 		groupList: [
 			GroupFactory('group.overview', [
 				ItemFactory('overview.statistics', '/statistics'),
-				ItemFactory('overview.about', '/about')
+				// ItemFactory('overview.about', '/about')
 			])
 		]
 	},

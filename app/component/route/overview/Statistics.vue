@@ -1,6 +1,6 @@
 <template>
 <div id="statistics">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-6 col-lg-3">
 			<running-timming class="my-1"></running-timming>
 		</div>
@@ -13,7 +13,7 @@
 		<div class="col-md-6 col-lg-3">
 			<memory-usage-last class="my-1"></memory-usage-last>
 		</div>
-	</div>
+	</div> -->
 
 	<cpu-usage class="my-3"></cpu-usage>
 

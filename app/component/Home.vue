@@ -8,18 +8,18 @@
 		<el-submenu index="4"
 			style="float: right;">
 			<template slot="title"><i class="fa fa-user"></i></template>
-			<el-menu-item index="4-1">Signed in as @User</el-menu-item>
+			<el-menu-item index="4-1">Signed in as @{{username}}</el-menu-item>
 			<el-menu-item index="4-2" @click="signout()">sign out</el-menu-item>
-			<el-menu-item index="4-3" divided>Your profile</el-menu-item>
-			<router-link
+			<!-- <el-menu-item index="4-3" divided>Your profile</el-menu-item> -->
+			<!-- <router-link
 				tag="li"
 				role="menuitem"
 				class="el-menu-item"
 				to="/config"
 				:title="$t('nav.config')">Settings
-			</router-link>
+			</router-link> -->
 		</el-submenu>
-		<router-link
+		<!-- <router-link
 			tag="li"
 			role="menuitem"
 			class="el-menu-item"
@@ -27,7 +27,7 @@
 			to="/notification"
 			:title="$t('nav.notification')">
 			<i class="fa fa-bell"></i>
-		</router-link>
+		</router-link> -->
 
 		<div class="el-menu-item"
 			style="float: right;">
@@ -50,7 +50,7 @@
 			<el-checkbox border
 				class="mb-0"
 				:checked="!isToNow"
-				@change="toggleToNow()">To Now</el-checkbox>
+				@change="toggleToNow()">到现在</el-checkbox>
 		</div>
 
 	</el-menu>
@@ -68,6 +68,8 @@
 import Logo from './Logo.vue';
 import AppMenu from './Menu.vue';
 
+import axios from 'axios';
+
 const RANGE_ENSURE_INTERVAL = 2000;
 const DAY = 24 * 3600 * 1000;
 
@@ -80,6 +82,7 @@ export default {
 	components: { Logo, AppMenu },
 	data() {
 		return {
+			username: null,
 			rangeToUpdater: null,
 			dataUpdaterTimer: null,
 			datetimeRange: [getLastDay(), new Date()]
@@ -92,6 +95,7 @@ export default {
 	},
 	mounted() {
 		this.setToNow();
+		this.getUsername();
 	},
 	destroyed() {
 		clearInterval(this.rangeToUpdater);
@@ -165,6 +169,17 @@ export default {
 				this.$Data.setAutoUpdate(isDynamic);
 				this.$Data.forceUpdateAll();
 			}, RANGE_ENSURE_INTERVAL);
+		},
+		getUsername() {
+			const accountId = this.$store.state.account.id;
+
+			return axios.get(`/api/account/${accountId}`)
+				.then(res => {
+					this.username = res.data.data.name;
+				})
+				.catch(err => {
+					console.log(err);
+				});
 		}
 	},
 }
