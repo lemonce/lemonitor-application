@@ -19,6 +19,7 @@
 
 	<memory-usage class="my-3"></memory-usage>
 </div>
+
 </template>
 
 <script>

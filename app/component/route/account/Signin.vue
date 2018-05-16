@@ -2,36 +2,42 @@
 <div class="container" style="margin-top: 7rem">
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-			<el-card class="box-card">
+
+			<el-card class="box-card" shadow="never">
 				<div slot="header">
-					<span>Sign in</span>
+					<span>用户登录</span>
 				</div>
+
 				<el-form ref="options"
 					@submit.native.prevent="signIn()"
 					@validate="commitForm()"
 					label-position="top"
 					:model="options"
 					:rules="optionsRule">
-					<el-form-item label="Username"
+					<el-form-item label="用户名"
 						prop="name">
 						<el-input v-model="options.name"></el-input>
 					</el-form-item>
+
 					<div class="clearfix">
 						<el-button style="float: right;"
-							type="text">Forgot password?</el-button>
-						<el-form-item label="Password"
+							type="text">忘记密码</el-button>
+						<el-form-item label="密码"
 							prop="password">
 							<el-input
 								v-model="options.password"
 								type="password"></el-input>
 						</el-form-item>
 					</div>
+
 					<el-form-item>
 						<el-button type="primary"
-							native-type="submit">Apply</el-button>
+							native-type="submit">登录</el-button>
 					</el-form-item>
 				</el-form>
+
 			</el-card>
+			
 		</div>
 	</div>
 </div>

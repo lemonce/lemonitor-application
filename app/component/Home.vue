@@ -3,13 +3,19 @@
 	<el-menu mode="horizontal"
 		class="clearfix"
 		style="user-select: none;">
-		<logo class="el-menu-item"></logo>
+		<router-link tag="li"
+			to="/"
+			class="el-menu-item">
+			<logo></logo>
+		</router-link>
 
 		<el-submenu index="4"
 			style="float: right;">
-			<template slot="title"><i class="fa fa-user"></i></template>
-			<el-menu-item index="4-1">Signed in as @{{username}}</el-menu-item>
-			<el-menu-item index="4-2" @click="signout()">sign out</el-menu-item>
+			<template slot="title">
+				<i class="fa fa-user"></i>
+			</template>
+			<el-menu-item index="4-1">用户：{{username}}</el-menu-item>
+			<el-menu-item index="4-2" @click="signout()">退出</el-menu-item>
 			<!-- <el-menu-item index="4-3" divided>Your profile</el-menu-item> -->
 			<!-- <router-link
 				tag="li"
@@ -61,7 +67,9 @@
 			<router-view class="container-fluid pt-3"></router-view>
 		</div>
 	</div>
+
 </div>
+
 </template>
 
 <script>
@@ -175,13 +183,13 @@ export default {
 
 			return axios.get(`/api/account/${accountId}`)
 				.then(res => {
-					this.username = res.data.data.name;
+					this.username = this.$store.state.username = res.data.data.name;
 				})
 				.catch(err => {
 					console.log(err);
 				});
 		}
-	},
+	}
 }
 </script>
 

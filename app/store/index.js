@@ -14,7 +14,8 @@ const UPDATE_NOW_INTERVAL = 30 * 1000;
 const store = new Vuex.Store({
 	modules: { menu, range, account },
 	state: {
-		lang: 'English'
+		lang: 'English',
+		username: null
 	}
 });
 
