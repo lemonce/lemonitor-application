@@ -7,14 +7,14 @@ import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import bFormSlider from 'vue-bootstrap-slider';
 import VueTimepicker from 'vue-timepicker-remastered';
-import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue';
 
 Vue.use(BootstrapVue);
 
 import menu from './menu.js';
 import Data from './plugin/data.js';
 
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, { fieldsBagName: 'veeFields' });
 Vue.use(bFormSlider);
 Vue.use(VueTimepicker, { name: 'timepicker' });
 Vue.use(Data, {
