@@ -2,6 +2,7 @@
 <div>
 	<div v-for="(group, index) in menu"
 		:key="index"
+		v-if="group.show"
 		:class="{expanded: group.expanded}">
 		<h6 @click="toggleGroup(group)"
 			:title="$t(group.name)"

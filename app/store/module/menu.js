@@ -8,6 +8,7 @@ function GroupFactory(name = 'untitled', itemList = [], priority = 0x3000) {
 		name,
 		itemList,
 		expanded: false,
+		show: true
 	};
 }
 
@@ -25,7 +26,7 @@ export default {
 		groupList: [
 			GroupFactory('group.overview', [
 				ItemFactory('overview.statistics', '/statistics'),
-				ItemFactory('overview.about', '/about')
+				// ItemFactory('overview.about', '/about')
 			])
 		]
 	},
@@ -72,6 +73,13 @@ export default {
 			const group = findGroupByName(state.groupList, name);
 
 			group.expanded = Boolean(expanded);
+		},
+		setGroupVisibility(state, {
+			name, show = true
+		}) {
+			const group = findGroupByName(state.groupList, name);
+
+			group.show = show;
 		}
 	}
 };

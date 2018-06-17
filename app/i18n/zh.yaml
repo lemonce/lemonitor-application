@@ -1,5 +1,10 @@
 home: '主页'
 
+account:
+  label: '账户'
+  settings: '设置'
+  signout: '退出'
+
 nav:
  notification: '你没有未读通知'
  config: '配置'

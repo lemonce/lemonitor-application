@@ -1,6 +1,6 @@
 <template>
 <div id="statistics">
-	<b-row>
+	<!-- <b-row>
 		<b-col md="6" lg="3">
 			<running-timming></running-timming>
 		</b-col>
@@ -16,7 +16,7 @@
 			<memory-usage-last></memory-usage-last>
 			
 		</b-col>
-	</b-row>
+	</b-row> -->
 
 	<cpu-usage></cpu-usage>
 
@@ -25,21 +25,21 @@
 </template>
 
 <script>
-import CpuUsageLast from "./statistics/cpu-usage-last.vue";
+// import CpuUsageLast from "./statistics/cpu-usage-last.vue";
 import CpuUsage from "./statistics/cpu-usage.vue";
-import MemoryUsageLast from "./statistics/memory-usage-last.vue";
+// import MemoryUsageLast from "./statistics/memory-usage-last.vue";
 import MemoryUsage from "./statistics/memory-usage.vue";
-import RunningTimming from "./statistics/running-timming.vue";
-import ActiveSession from "./statistics/session.vue";
+// import RunningTimming from "./statistics/running-timming.vue";
+// import ActiveSession from "./statistics/session.vue";
 
 export default {
 	components: {
-		CpuUsageLast,
+		// CpuUsageLast,
 		CpuUsage,
-		MemoryUsageLast,
+		// MemoryUsageLast,
 		MemoryUsage,
-		RunningTimming,
-		ActiveSession
+		// RunningTimming,
+		// ActiveSession
 	}
 };
 </script>

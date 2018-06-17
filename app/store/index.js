@@ -23,3 +23,5 @@ setInterval(() => {
 }, UPDATE_NOW_INTERVAL);
 
 export default store;
+
+window.$store = store;

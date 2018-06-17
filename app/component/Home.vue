@@ -30,7 +30,7 @@
 					<time-to v-if="isTimeToShow"
 						@apply="isTimeToShow = false"></time-to>
 				</li>
-				<b-nav-item>
+				<!-- <b-nav-item>
 					<i class="fa fa-refresh"
 						:title="$t('nav.refresh')"></i>
 				</b-nav-item>
@@ -38,20 +38,17 @@
 					to="/notification"
 					:title="$t('nav.notification')">
 					<i class="fa fa-bell"></i>
-				</b-nav-item>
+				</b-nav-item> -->
 				<b-nav-item-dropdown right>
 					<template slot="button-content">
 						<i class="fa fa-user"></i>
 					</template>
-					<b-dropdown-item>Signed in as @User</b-dropdown-item>
-					<b-dropdown-item>Your profile</b-dropdown-item>
+					<!-- <b-dropdown-item>Signed in as @User</b-dropdown-item> -->
 					<b-dropdown-item
 						to="/config"
-						:title="$t('nav.config')">
-						Settings
-					</b-dropdown-item>
+						:title="$t('nav.config')">{{$t('account.settings')}}</b-dropdown-item>
 					<b-dropdown-divider></b-dropdown-divider>
-					<b-dropdown-item @click="signout()">Sign out</b-dropdown-item>
+					<b-dropdown-item @click="signout()">{{$t('account.signout')}}</b-dropdown-item>
 				</b-nav-item-dropdown>
 			</b-navbar-nav>
 		</b-collapse>

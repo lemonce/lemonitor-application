@@ -1,5 +1,10 @@
 home: 'Home'
 
+account:
+  label: 'Account'
+  settings: 'Settings'
+  signout: 'Sign Out'
+
 nav:
   notification: 'You have no unread notification'
   config: 'Config'
